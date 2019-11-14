@@ -10,7 +10,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert"><?= validation_errors() ?><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
             <?php endif ?>
 
-            <?= $this->session->flashdata('message'); ?>
+            <!-- <?= $this->session->flashdata('message'); ?> -->
 
             <a href="" class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">Add New Menu</a>
 
