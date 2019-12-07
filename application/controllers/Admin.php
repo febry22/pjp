@@ -110,6 +110,8 @@ class Admin extends CI_Controller
 
     public function edituser()
     {
+        $data['companies'] = $this->Master_model->getAllMaster();
+
         if (!empty($this->input->post('is_active'))) {
             $status = 1;
         } else $status = 0;
@@ -119,6 +121,7 @@ class Admin extends CI_Controller
         $data = [
             'fullname' => $this->input->post('fullname'),
             'role_id' => $this->input->post('role_id'),
+            'company_id' => $this->input->post('company_id'),
             'is_active' => $status
         ];
 

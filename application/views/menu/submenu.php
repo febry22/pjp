@@ -97,7 +97,7 @@
                     </div>
                     <div class="form-group">
                         <label for="menu_id">Parent menu</label>
-                        <select name="menu_id" id="menu_id" class="custom-select form-control">
+                        <select name="menu_id" id="menu_id" class="custom-select form-control selectpicker" data-live-search="true">
                             <option value="">-- Select Parent Menu --</option>
                             <?php foreach ($menu as $m) : ?>
                                 <option value="<?= $m['id'] ?>"><?= $m['menu'] ?></option>
@@ -164,7 +164,7 @@
                         </div>
                         <div class="form-group">
                             <label for="menu_id">Parent menu</label>
-                            <select name="menu_id" id="menu_id" class="custom-select form-control">
+                            <select name="menu_id" id="menu_id" class="custom-select form-control selectpicker" data-live-search="true">
                                 <?php foreach ($menu as $m) : ?>
                                     <option value="<?= $m['id'] ?>" <?php if ($m['id'] == $smmenu_id) echo "selected"; ?>><?= $m['menu'] ?></option>
                                 <?php endforeach ?>

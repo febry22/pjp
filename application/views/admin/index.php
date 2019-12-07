@@ -17,6 +17,7 @@
                         <th scope="col">Fullname</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
+                        <th scope="col">Company</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -28,6 +29,7 @@
                         $aufname = $au['fullname'];
                         $auemail = $au['email'];
                         $aurole = $au['role'];
+                        $aucid = $au['company_id'];
                         $austat = $au['is_active'];
                         ?>
                         <tr>
@@ -35,6 +37,7 @@
                             <td><?= $aufname ?></td>
                             <td><?= $auemail ?></td>
                             <td><?= $aurole ?></td>
+                            <td><?= $aucid ?></td>
                             <td>
                                 <?php if ($austat == 1) {
                                         echo 'Active';
@@ -83,7 +86,7 @@
                         </div>
                         <div class="form-group">
                             <label for="role_id">Role</label>
-                            <select name="role_id" id="role_id" class="custom-select form-control">
+                            <select name="role_id" id="role_id" class="custom-select form-control selectpicker" data-live-search="true">
                                 <?php foreach ($role as $r) : ?>
                                     <option value="<?= $r['id'] ?>" <?php if ($r['id'] == $aurole_id) echo "selected"; ?>><?= $r['role'] ?></option>
                                 <?php endforeach ?>

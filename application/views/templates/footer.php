@@ -42,6 +42,8 @@
 <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
 <script src="<?= base_url('assets/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url('assets/'); ?>vendor/datatables/datatables.min.js"></script>
+<script src="<?= base_url('assets/'); ?>vendor/bootstrap-select-1.13.9/dist/js/bootstrap-select.min.js"></script>
+<script src="<?= base_url('assets/'); ?>vendor/bootstrap-select-1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -96,6 +98,18 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#table_sub_menu').DataTable();
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#table_master').DataTable();
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#table_partner').DataTable();
     });
 </script>
 

@@ -25,8 +25,11 @@ class Admin_model extends CI_Model
     public function getAllUser()
     {
         $query = "SELECT `user`.* ,`user_role`.`role` 
-                    FROM `user` JOIN `user_role` 
+                    FROM `user` 
+                    JOIN `user_role` 
                     ON `user`.`role_id` = `user_role`.`id`
+                    JOIN `master_data_company`
+                    ON `user`.`company_id` = `master_data_company`.`id`
                     WHERE `user`.`role_id` != 1
         ";
 
