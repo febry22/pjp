@@ -9,6 +9,7 @@ class Admin extends CI_Controller
         is_logged_in();
 
         $this->load->model('Admin_model');
+        $this->load->model('Master_model');
     }
 
     public function index()
@@ -19,6 +20,8 @@ class Admin extends CI_Controller
 
         $data['alluser'] = $this->Admin_model->getAllUser();
         $data['role'] = $this->Admin_model->getAllRole(1);
+        $data['companies'] = $this->Master_model->getAllMaster();
+        $data['partners'] = $this->Master_model->getPartner();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

@@ -24,13 +24,13 @@ class Admin_model extends CI_Model
 
     public function getAllUser()
     {
-        $query = "SELECT `user`.* ,`user_role`.`role` 
+        $query = "SELECT `user`.* ,`user_role`.`role`, `master_data_company`.`name`, `master_data_partner`.`partner_name`
                     FROM `user` 
-                    JOIN `user_role` 
-                    ON `user`.`role_id` = `user_role`.`id`
-                    JOIN `master_data_company`
-                    ON `user`.`company_id` = `master_data_company`.`id`
+                    JOIN `user_role` ON `user`.`role_id` = `user_role`.`id`
+                    JOIN `master_data_company` ON `user`.`company_id` = `master_data_company`.`id`
+                    JOIN `master_data_partner` ON `user`.`partner_id` = `master_data_partner`.`id`
                     WHERE `user`.`role_id` != 1
+                    ORDER BY `user`.`fullname` ASC
         ";
 
         return $this->db->query($query)->result_array();

@@ -3,7 +3,10 @@ class Master_model extends CI_Model
 {
     public function getAllMaster()
     {
-        return $this->db->get('master_data_company')->result_array();
+        $this->db->from('master_data_company');
+        $this->db->order_by('name', 'ASC');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function addMaster($data)
@@ -27,7 +30,8 @@ class Master_model extends CI_Model
     {
         $query = "SELECT `master_data_partner`.* ,`master_data_company`.`name` 
                     FROM `master_data_partner` JOIN `master_data_company` 
-                    ON `master_data_partner`.`company_id` = `master_data_company`.`id`";
+                    ON `master_data_partner`.`company_id` = `master_data_company`.`id`
+                    ORDER BY `master_data_partner`.`partner_name` ASC";
 
         return $this->db->query($query)->result_array();
     }

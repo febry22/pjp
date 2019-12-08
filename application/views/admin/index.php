@@ -18,6 +18,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
                         <th scope="col">Company</th>
+                        <th scope="col">Branch</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -29,7 +30,8 @@
                         $aufname = $au['fullname'];
                         $auemail = $au['email'];
                         $aurole = $au['role'];
-                        $aucid = $au['company_id'];
+                        $auc = $au['name'];
+                        $aub = $au['partner_name'];
                         $austat = $au['is_active'];
                         ?>
                         <tr>
@@ -37,7 +39,8 @@
                             <td><?= $aufname ?></td>
                             <td><?= $auemail ?></td>
                             <td><?= $aurole ?></td>
-                            <td><?= $aucid ?></td>
+                            <td><?= $auc ?></td>
+                            <td><?= $aub ?></td>
                             <td>
                                 <?php if ($austat == 1) {
                                         echo 'Active';
@@ -65,6 +68,8 @@
     $auid = $au['id'];
     $aufname = $au['fullname'];
     $aurole = $au['role'];
+    $aucid = $au['company_id'];
+    $aupid = $au['partner_id'];
     $aurole_id = $au['role_id'];
     $austat = $au['is_active'];
     ?>
@@ -89,6 +94,22 @@
                             <select name="role_id" id="role_id" class="custom-select form-control selectpicker" data-live-search="true">
                                 <?php foreach ($role as $r) : ?>
                                     <option value="<?= $r['id'] ?>" <?php if ($r['id'] == $aurole_id) echo "selected"; ?>><?= $r['role'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="company_id">Company</label>
+                            <select name="company_id" id="company_id" class="custom-select form-control selectpicker" data-live-search="true">
+                                <?php foreach ($companies as $c) : ?>
+                                    <option value="<?= $c['id'] ?>" <?php if ($c['id'] == $aucid) echo "selected"; ?>><?= $c['name'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="partner_id">Branch</label>
+                            <select name="partner_id" id="partner_id" class="custom-select form-control selectpicker" data-live-search="true">
+                                <?php foreach ($partners as $p) : ?>
+                                    <option value="<?= $p['id'] ?>" <?php if ($p['id'] == $aupid) echo "selected"; ?>><?= $p['partner_name'] ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>

@@ -3,7 +3,10 @@ class Menu_model extends CI_Model
 {
     public function getAllMenu()
     {
-        return $this->db->get('user_menu')->result_array();
+        $this->db->from('user_menu');
+        $this->db->order_by('_order', 'ASC');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     public function addMenu($data)
