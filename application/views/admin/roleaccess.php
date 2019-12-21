@@ -23,7 +23,7 @@
                     <?php foreach ($menu as $m) :
                         $mid = $m['id'];
                         $mname = $m['menu'];
-                        ?>
+                    ?>
                         <tr>
                             <th scope="row"><?= $i ?></th>
                             <td><?= $mname ?></td>

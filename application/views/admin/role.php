@@ -25,7 +25,7 @@
                     <?php foreach ($role as $r) :
                         $rid = $r['id'];
                         $rname = $r['role'];
-                        ?>
+                    ?>
                         <tr>
                             <th scope="row"><?= $i ?></th>
                             <td><?= $rname ?></td>
@@ -76,7 +76,7 @@
 <?php foreach ($role as $r) :
     $rid = $r['id'];
     $rname = $r['role'];
-    ?>
+?>
     <div class="modal fade" id="editModal<?= $rid; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -109,7 +109,7 @@
 <?php foreach ($role as $r) :
     $rid = $r['id'];
     $rname = $r['role'];
-    ?>
+?>
     <div class="modal fade" id="deleteModal<?= $rid; ?>" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

@@ -51,6 +51,37 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
+<!-- Get partner by company_id -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#company_id').change(function() {
+            var id = $(this).val();
+            $.ajax({
+                url: "<?= base_url('admin/get_partner_by_company/'); ?>",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    var html = '';
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        html += '<option value=' + data[i].id + '>' + data[i].partner_name + '</option>';
+                    }
+                    $('#partner_id').html(html);
+                }
+            });
+
+            console.log(id);
+
+            return false;
+        });
+
+    });
+</script>
+
 <script>
     $('.custom-file-input').on('change', function() {
         let filename = $(this).val().split('\\').pop();

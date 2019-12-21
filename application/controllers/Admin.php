@@ -21,7 +21,7 @@ class Admin extends CI_Controller
         $data['alluser'] = $this->Admin_model->getAllUser();
         $data['role'] = $this->Admin_model->getAllRole(1);
         $data['companies'] = $this->Master_model->getAllMaster();
-        $data['partners'] = $this->Master_model->getPartner();
+        $data['partners'] = $this->Master_model->getPartner(0);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -111,26 +111,49 @@ class Admin extends CI_Controller
             Access changed!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
     }
 
-    public function edituser()
+    public function edituser($id)
     {
+        $data['title'] = 'Manage User';
+        $data['user'] = $this->db->get_where('user', ['id' => $id])->row_array();
+        $data['roles'] = $this->Admin_model->getAllRole(1);
+        $data['role'] = $this->db->get_where('user_role', ['id' => $data['user']['role_id']])->row_array();
         $data['companies'] = $this->Master_model->getAllMaster();
+        $data['partners'] = $this->Master_model->getPartner($data['user']['company_id']);
 
-        if (!empty($this->input->post('is_active'))) {
-            $status = 1;
-        } else $status = 0;
+        $this->form_validation->set_rules('name', 'Fullname', 'required|trim');
 
-        $id = $this->input->post('id');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/edituser', $data);
+            $this->load->view('templates/footer');
+        } else {
+            if (!empty($this->input->post('is_active'))) {
+                $status = 1;
+            } else $status = 0;
 
-        $data = [
-            'fullname' => $this->input->post('fullname'),
-            'role_id' => $this->input->post('role_id'),
-            'company_id' => $this->input->post('company_id'),
-            'is_active' => $status
-        ];
+            $data = [
+                'fullname' => $this->input->post('name'),
+                'role_id' => $this->input->post('role_id'),
+                'company_id' => $this->input->post('company_id'),
+                'partner_id' => $this->input->post('partner_id'),
+                'is_active' => $status
+            ];
 
-        $this->Admin_model->editUser($id, $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            User updated!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-        redirect('admin');
+            $this->Admin_model->editUser($id, $data);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                User updated!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('admin/index');
+        }
+    }
+
+    // get partner by company_id
+    function get_partner_by_company()
+    {
+        $company_id = $this->input->post('id', TRUE);
+        $data = $this->Master_model->get_partner_by_company($company_id)->result();
+        echo json_encode($data);
     }
 }

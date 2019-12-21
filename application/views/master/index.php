@@ -29,16 +29,16 @@
                         $cid = $c['id'];
                         $cname = $c['name'];
                         $cstatus = $c['is_active'];
-                        ?>
+                    ?>
                         <tr>
                             <th scope="row"><?= $i ?></th>
                             <td><?= $cname ?></td>
                             <td>
                                 <?php if ($cstatus == 1) {
-                                        echo 'Active';
-                                    } else {
-                                        echo 'Inactive';
-                                    } ?></td>
+                                    echo 'Active';
+                                } else {
+                                    echo 'Inactive';
+                                } ?></td>
                             </td>
                             <td>
                                 <a href="" class="badge badge-primary" data-toggle="modal" data-target="#editModal<?php echo $cid; ?>"> Edit</a>
@@ -96,7 +96,7 @@
     $cid = $c['id'];
     $cname = $c['name'];
     $cstatus = $c['is_active'];
-    ?>
+?>
     <div class="modal fade" id="editModal<?= $cid; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -137,7 +137,7 @@
 <?php foreach ($companies as $c) :
     $cid = $c['id'];
     $cname = $c['name'];
-    ?>
+?>
     <div class="modal fade" id="deleteModal<?= $cid; ?>" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

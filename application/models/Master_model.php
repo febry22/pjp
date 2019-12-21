@@ -26,12 +26,20 @@ class Master_model extends CI_Model
         $this->db->update('master_data_company', $data);
     }
 
-    public function getPartner()
+    public function getPartner($company_id)
     {
-        $query = "SELECT `master_data_partner`.* ,`master_data_company`.`name` 
+        if ($company_id != 0) {
+            $query = "SELECT `master_data_partner`.* ,`master_data_company`.`name` 
+                    FROM `master_data_partner` JOIN `master_data_company` 
+                    ON `master_data_partner`.`company_id` = `master_data_company`.`id`
+                    WHERE `master_data_partner`.`company_id` = $company_id
+                    ORDER BY `master_data_partner`.`partner_name` ASC";
+        } else {
+            $query = "SELECT `master_data_partner`.* ,`master_data_company`.`name` 
                     FROM `master_data_partner` JOIN `master_data_company` 
                     ON `master_data_partner`.`company_id` = `master_data_company`.`id`
                     ORDER BY `master_data_partner`.`partner_name` ASC";
+        }
 
         return $this->db->query($query)->result_array();
     }
@@ -46,5 +54,11 @@ class Master_model extends CI_Model
     {
         $this->db->where('id', $id);
         $this->db->delete('master_data_partner');
+    }
+
+    function get_partner_by_company($company_id)
+    {
+        $query = $this->db->get_where('master_data_partner', ['company_id' => $company_id]);
+        return $query;
     }
 }

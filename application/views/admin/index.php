@@ -33,7 +33,7 @@
                         $auc = $au['name'];
                         $aub = $au['partner_name'];
                         $austat = $au['is_active'];
-                        ?>
+                    ?>
                         <tr>
                             <th scope="row"><?= $i ?></th>
                             <td><?= $aufname ?></td>
@@ -43,13 +43,14 @@
                             <td><?= $aub ?></td>
                             <td>
                                 <?php if ($austat == 1) {
-                                        echo 'Active';
-                                    } else {
-                                        echo 'Inactive';
-                                    } ?></td>
+                                    echo 'Active';
+                                } else {
+                                    echo 'Inactive';
+                                } ?></td>
                             </td>
                             <td>
-                                <a href="" class="badge badge-primary" data-toggle="modal" data-target="#editModal<?php echo $auid; ?>"> Edit</a>
+                                <!-- <a href="" class="badge badge-primary" data-toggle="modal" data-target="#editModal<#?php echo $auid; ?>"> Edit</a> -->
+                                <a href="<?= base_url('admin/edituser/') . $auid ?>" class="badge badge-primary"> Edit</a>
                             </td>
                         </tr>
                         <?php $i++ ?>
@@ -62,73 +63,3 @@
 <!-- /.container-fluid -->
 </div>
 <!-- End of Main Content -->
-
-<!-- Modal Edit -->
-<?php foreach ($alluser as $au) :
-    $auid = $au['id'];
-    $aufname = $au['fullname'];
-    $aurole = $au['role'];
-    $aucid = $au['company_id'];
-    $aupid = $au['partner_id'];
-    $aurole_id = $au['role_id'];
-    $austat = $au['is_active'];
-    ?>
-    <div class="modal fade" id="editModal<?= $auid; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit User</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="<?= base_url() . 'admin/edituser' ?>" method="post">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input type="hidden" id="id" name="id" value="<?= $auid; ?>">
-                            <label for="fullname">Fullname</label>
-                            <input type="text" class="form-control" id="fullname" name="fullname" placeholder="type here..." value="<?php echo $aufname; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="role_id">Role</label>
-                            <select name="role_id" id="role_id" class="custom-select form-control selectpicker" data-live-search="true">
-                                <?php foreach ($role as $r) : ?>
-                                    <option value="<?= $r['id'] ?>" <?php if ($r['id'] == $aurole_id) echo "selected"; ?>><?= $r['role'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="company_id">Company</label>
-                            <select name="company_id" id="company_id" class="custom-select form-control selectpicker" data-live-search="true">
-                                <?php foreach ($companies as $c) : ?>
-                                    <option value="<?= $c['id'] ?>" <?php if ($c['id'] == $aucid) echo "selected"; ?>><?= $c['name'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="partner_id">Branch</label>
-                            <select name="partner_id" id="partner_id" class="custom-select form-control selectpicker" data-live-search="true">
-                                <?php foreach ($partners as $p) : ?>
-                                    <option value="<?= $p['id'] ?>" <?php if ($p['id'] == $aupid) echo "selected"; ?>><?= $p['partner_name'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="is_active">User status</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" id="is_active" name="is_active" <?php if ($austat == 1) echo "checked='checked'" ?>>
-                                <label class="form-check-label" for="is_active">
-                                    Active?
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-<?php endforeach ?>
