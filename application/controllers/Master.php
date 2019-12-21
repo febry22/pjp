@@ -91,7 +91,7 @@ class Master extends CI_Controller
         $data['title'] = 'Company Branch';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['companies'] = $this->Master_model->getAllMaster();
-        $data['partner'] = $this->Master_model->getPartner();
+        $data['partner'] = $this->Master_model->getPartner(0);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -131,7 +131,7 @@ class Master extends CI_Controller
         $data['title'] = 'Company Branch';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['companies'] = $this->Master_model->getAllMaster();
-        $data['partner'] = $this->Master_model->getPartner();
+        $data['partner'] = $this->Master_model->getPartner(0);
 
         $this->form_validation->set_rules('partner_name', 'Partner name', 'required');
         $this->form_validation->set_rules('code', 'Code', 'required');

@@ -7,6 +7,7 @@ class Auth extends CI_Controller
     {
         parent::__construct();
         $this->load->library('phpmailer_lib');
+        $this->load->model('Master_model');
     }
 
     public function index()
@@ -44,12 +45,13 @@ class Auth extends CI_Controller
                         'role_id' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
-                    if ($user['role_id'] == 1)
+                    if ($user['role_id'] == 1) {
                         redirect('admin');
-                    elseif ($user['role_id'] == 4)
+                    } elseif ($user['role_id'] == 4) {
                         redirect('report');
-                    else
+                    } else {
                         redirect('user');
+                    }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
                     User or Password is incorrect!</div>');
@@ -73,6 +75,8 @@ class Auth extends CI_Controller
             redirect('user');
         }
 
+        $data['companies'] = $this->Master_model->getAllMaster();
+
         $this->form_validation->set_rules('fullname', 'Fullname', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
             'is_unique' => 'This email has already registered!'
@@ -95,8 +99,10 @@ class Auth extends CI_Controller
                 'email' => htmlspecialchars($email),
                 'image' => 'avatar.svg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'role_id' => 2,
-                'is_active' => 0,
+                'company_id' => 5, //no company
+                'partner_id' => 10, //no branch
+                'role_id' => 2, //role admin
+                'is_active' => 0, //inactive
                 'date_created' => time()
             ];
 

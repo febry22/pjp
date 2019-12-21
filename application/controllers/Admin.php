@@ -121,6 +121,9 @@ class Admin extends CI_Controller
         $data['partners'] = $this->Master_model->getPartner($data['user']['company_id']);
 
         $this->form_validation->set_rules('name', 'Fullname', 'required|trim');
+        $this->form_validation->set_rules('role_id', 'Role', 'required');
+        $this->form_validation->set_rules('company_id', 'Company', 'required');
+        $this->form_validation->set_rules('partner_id', 'Branch', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);

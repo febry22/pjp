@@ -33,12 +33,12 @@ class Master_model extends CI_Model
                     FROM `master_data_partner` JOIN `master_data_company` 
                     ON `master_data_partner`.`company_id` = `master_data_company`.`id`
                     WHERE `master_data_partner`.`company_id` = $company_id
-                    ORDER BY `master_data_partner`.`partner_name` ASC";
+                    ORDER BY `master_data_company`.`name` ASC";
         } else {
             $query = "SELECT `master_data_partner`.* ,`master_data_company`.`name` 
                     FROM `master_data_partner` JOIN `master_data_company` 
                     ON `master_data_partner`.`company_id` = `master_data_company`.`id`
-                    ORDER BY `master_data_partner`.`partner_name` ASC";
+                    ORDER BY `master_data_company`.`name` ASC";
         }
 
         return $this->db->query($query)->result_array();
