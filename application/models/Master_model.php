@@ -61,4 +61,24 @@ class Master_model extends CI_Model
         $query = $this->db->get_where('master_data_partner', ['company_id' => $company_id]);
         return $query;
     }
+
+    public function getAllService()
+    {
+        $this->db->from('master_data_service');
+        $this->db->order_by('type', 'ASC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
+    public function editService($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('master_data_service', $data);
+    }
+
+    public function deleteService($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('master_data_service');
+    }
 }
