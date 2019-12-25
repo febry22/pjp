@@ -67,7 +67,6 @@
 <!-- End of Main Content -->
 
 <!-- Modal Detail -->
-<!-- Modal Edit -->
 <?php foreach ($services as $s) :
     $sid = $s['id'];
     $stype = $s['type'];
@@ -78,6 +77,7 @@
     $sktp_fc = $s['ktp_fc'];
     $sbpkb_asli = $s['bpkb_asli'];
     $sbpkb_fc = $s['bpkb_fc'];
+    $skertas_gesek = $s['kertas_gesek'];
     $ssk_kehilangan = $s['sk_kehilangan'];
     $sktp_baru_fc = $s['ktp_baru_fc'];
     $sinvoice = $s['invoice'];
@@ -195,6 +195,16 @@
                                         <input class="form-check-input" type="checkbox" value="1" id="sk_lising" name="sk_lising" <?php if ($ssk_lising == 1) echo "checked='checked'" ?>>
                                         <label class="form-check-label" for="sk_lising">
                                             Surat Pengantar Lising
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" id="kertas_gesek" name="kertas_gesek" <?php if ($skertas_gesek == 1) echo "checked='checked'" ?>>
+                                        <label class="form-check-label" for="kertas_gesek">
+                                            Kertas Gesek
                                         </label>
                                     </div>
                                 </div>
@@ -333,6 +343,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-sm">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="kertas_gesek" name="kertas_gesek">
+                                <label class="form-check-label" for="kertas_gesek">
+                                    Kertas Gesek
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="is_active">Service status</label>
                         <div class="form-check">
@@ -363,6 +383,7 @@
     $sktp_fc = $s['ktp_fc'];
     $sbpkb_asli = $s['bpkb_asli'];
     $sbpkb_fc = $s['bpkb_fc'];
+    $skertas_gesek = $s['kertas_gesek'];
     $ssk_kehilangan = $s['sk_kehilangan'];
     $sktp_baru_fc = $s['ktp_baru_fc'];
     $sinvoice = $s['invoice'];
@@ -479,6 +500,16 @@
                                     <input class="form-check-input" type="checkbox" value="1" id="sk_lising" name="sk_lising" <?php if ($ssk_lising == 1) echo "checked='checked'" ?>>
                                     <label class="form-check-label" for="sk_lising">
                                         Surat Pengantar Lising
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" id="kertas_gesek" name="kertas_gesek" <?php if ($skertas_gesek == 1) echo "checked='checked'" ?>>
+                                    <label class="form-check-label" for="kertas_gesek">
+                                        Kertas Gesek
                                     </label>
                                 </div>
                             </div>

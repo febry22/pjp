@@ -236,6 +236,10 @@ class Master extends CI_Controller
                 $sk_lising = 1;
             } else $sk_lising = 0;
 
+            if (!empty($this->input->post('kertas_gesek'))) {
+                $kertas_gesek = 1;
+            } else $kertas_gesek = 0;
+
             $data = [
                 'name' => $this->input->post('name'),
                 'type' => $this->input->post('type'),
@@ -249,6 +253,7 @@ class Master extends CI_Controller
                 'ktp_baru_fc' => $ktp_baru_fc,
                 'invoice' => $invoice,
                 'sk_lising' => $sk_lising,
+                'kertas_gesek' => $kertas_gesek,
                 'is_active' => $status
             ];
 
@@ -320,6 +325,10 @@ class Master extends CI_Controller
                 $sk_lising = 1;
             } else $sk_lising = 0;
 
+            if (!empty($this->input->post('kertas_gesek'))) {
+                $kertas_gesek = 1;
+            } else $kertas_gesek = 0;
+
             $data = [
                 'name' => $this->input->post('name'),
                 'type' => $this->input->post('type'),
@@ -333,6 +342,7 @@ class Master extends CI_Controller
                 'ktp_baru_fc' => $ktp_baru_fc,
                 'invoice' => $invoice,
                 'sk_lising' => $sk_lising,
+                'kertas_gesek' => $kertas_gesek,
                 'is_active' => $status
             ];
 
