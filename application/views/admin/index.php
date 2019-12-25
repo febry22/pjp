@@ -49,7 +49,6 @@
                                 } ?></td>
                             </td>
                             <td>
-                                <!-- <a href="" class="badge badge-primary" data-toggle="modal" data-target="#editModal<#?php echo $auid; ?>"> Edit</a> -->
                                 <a href="<?= base_url('admin/edituser/') . $auid ?>" class="badge badge-primary"> Edit</a>
                             </td>
                         </tr>

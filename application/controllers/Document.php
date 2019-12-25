@@ -16,7 +16,7 @@ class Document extends CI_Controller
         $data['title'] = 'STNK';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['stnks'] = $this->Master_model->getAllStnk();
+        $data['stnks'] = $this->Document_model->getStnk($data['user']['id'], $data['user']['role_id']);
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
