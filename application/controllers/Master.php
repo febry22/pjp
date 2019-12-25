@@ -196,9 +196,59 @@ class Master extends CI_Controller
                 $status = 1;
             } else $status = 0;
 
+            if (!empty($this->input->post('stnk_asli'))) {
+                $stnk_asli = 1;
+            } else $stnk_asli = 0;
+
+            if (!empty($this->input->post('stnk_fc'))) {
+                $stnk_fc = 1;
+            } else $stnk_fc = 0;
+
+            if (!empty($this->input->post('ktp_asli'))) {
+                $ktp_asli = 1;
+            } else $ktp_asli = 0;
+
+            if (!empty($this->input->post('ktp_fc'))) {
+                $ktp_fc = 1;
+            } else $ktp_fc = 0;
+
+            if (!empty($this->input->post('bpkb_asli'))) {
+                $bpkb_asli = 1;
+            } else $bpkb_asli = 0;
+
+            if (!empty($this->input->post('bpkb_fc'))) {
+                $bpkb_fc = 1;
+            } else $bpkb_fc = 0;
+
+            if (!empty($this->input->post('sk_kehilangan'))) {
+                $sk_kehilangan = 1;
+            } else $sk_kehilangan = 0;
+
+            if (!empty($this->input->post('ktp_baru_fc'))) {
+                $ktp_baru_fc = 1;
+            } else $ktp_baru_fc = 0;
+
+            if (!empty($this->input->post('invoice'))) {
+                $invoice = 1;
+            } else $invoice = 0;
+
+            if (!empty($this->input->post('sk_lising'))) {
+                $sk_lising = 1;
+            } else $sk_lising = 0;
+
             $data = [
                 'name' => $this->input->post('name'),
                 'type' => $this->input->post('type'),
+                'stnk_asli' => $stnk_asli,
+                'stnk_fc' => $stnk_fc,
+                'ktp_asli' => $ktp_asli,
+                'ktp_fc' => $ktp_fc,
+                'bpkb_asli' => $bpkb_asli,
+                'bpkb_fc' => $bpkb_fc,
+                'sk_kehilangan' => $sk_kehilangan,
+                'ktp_baru_fc' => $ktp_baru_fc,
+                'invoice' => $invoice,
+                'sk_lising' => $sk_lising,
                 'is_active' => $status
             ];
 
@@ -230,9 +280,59 @@ class Master extends CI_Controller
                 $status = 1;
             } else $status = 0;
 
+            if (!empty($this->input->post('stnk_asli'))) {
+                $stnk_asli = 1;
+            } else $stnk_asli = 0;
+
+            if (!empty($this->input->post('stnk_fc'))) {
+                $stnk_fc = 1;
+            } else $stnk_fc = 0;
+
+            if (!empty($this->input->post('ktp_asli'))) {
+                $ktp_asli = 1;
+            } else $ktp_asli = 0;
+
+            if (!empty($this->input->post('ktp_fc'))) {
+                $ktp_fc = 1;
+            } else $ktp_fc = 0;
+
+            if (!empty($this->input->post('bpkb_asli'))) {
+                $bpkb_asli = 1;
+            } else $bpkb_asli = 0;
+
+            if (!empty($this->input->post('bpkb_fc'))) {
+                $bpkb_fc = 1;
+            } else $bpkb_fc = 0;
+
+            if (!empty($this->input->post('sk_kehilangan'))) {
+                $sk_kehilangan = 1;
+            } else $sk_kehilangan = 0;
+
+            if (!empty($this->input->post('ktp_baru_fc'))) {
+                $ktp_baru_fc = 1;
+            } else $ktp_baru_fc = 0;
+
+            if (!empty($this->input->post('invoice'))) {
+                $invoice = 1;
+            } else $invoice = 0;
+
+            if (!empty($this->input->post('sk_lising'))) {
+                $sk_lising = 1;
+            } else $sk_lising = 0;
+
             $data = [
                 'name' => $this->input->post('name'),
                 'type' => $this->input->post('type'),
+                'stnk_asli' => $stnk_asli,
+                'stnk_fc' => $stnk_fc,
+                'ktp_asli' => $ktp_asli,
+                'ktp_fc' => $ktp_fc,
+                'bpkb_asli' => $bpkb_asli,
+                'bpkb_fc' => $bpkb_fc,
+                'sk_kehilangan' => $sk_kehilangan,
+                'ktp_baru_fc' => $ktp_baru_fc,
+                'invoice' => $invoice,
+                'sk_lising' => $sk_lising,
                 'is_active' => $status
             ];
 
