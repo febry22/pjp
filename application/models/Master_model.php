@@ -81,4 +81,32 @@ class Master_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('master_data_service');
     }
+
+    public function getAllCost()
+    {
+        $query = "SELECT `master_data_cost`.* ,`master_data_service`.`name` 
+                    FROM `master_data_cost` JOIN `master_data_service` 
+                    ON `master_data_cost`.`service_id` = `master_data_service`.`id`
+                    ORDER BY `master_data_cost`.`type` ASC";
+
+        return $this->db->query($query)->result_array();
+    }
+
+    public function editCost($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('master_data_cost', $data);
+    }
+
+    public function deleteCost($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('master_data_cost');
+    }
+
+    function get_service_by_type($type)
+    {
+        $query = $this->db->get_where('master_data_service', ['type' => $type]);
+        return $query;
+    }
 }

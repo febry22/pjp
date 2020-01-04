@@ -82,6 +82,38 @@
     });
 </script>
 
+<!-- Get service by type -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#type').change(function() {
+            var id = $(this).val();
+            $.ajax({
+                url: "<?= base_url('master/get_service_by_type/'); ?>",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    var html = '';
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        html += '<option value=' + data[i].id + '>' + data[i].name + '</option>';
+                    }
+                    $('#service_id').html(html);
+                }
+            });
+
+            console.log(id);
+
+            return false;
+        });
+
+    });
+</script>
+
+<!-- Ajax Change Access -->
 <script>
     $('.custom-file-input').on('change', function() {
         let filename = $(this).val().split('\\').pop();
@@ -91,8 +123,6 @@
     $('.form-check-input').on('change', function() {
         const menuId = $(this).data('menu');
         const roleId = $(this).data('role');
-
-        console.log('adsada');
 
         $.ajax({
             url: "<?= base_url('admin/changeaccess') ?>",
@@ -108,39 +138,16 @@
     });
 </script>
 
+<!-- Datatable -->
 <script type="text/javascript">
     $(document).ready(function() {
         $('#table_user').DataTable();
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
         $('#table_user_access').DataTable();
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
         $('#table_menu').DataTable();
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
         $('#table_sub_menu').DataTable();
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
         $('#table_master').DataTable();
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
         $('#table_partner').DataTable();
+        $('#table_cost').DataTable();
     });
 </script>
 

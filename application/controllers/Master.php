@@ -361,4 +361,104 @@ class Master extends CI_Controller
             Service deleted!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
         redirect('master/service');
     }
+
+    public function cost()
+    {
+        $data['title'] = 'Cost';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['services'] = $this->Master_model->getAllService();
+        $data['costs'] = $this->Master_model->getAllCost();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('master/cost', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function addcost()
+    {
+        $this->form_validation->set_rules('type', 'Type', 'required');
+        $this->form_validation->set_rules('service_id', 'Service', 'required');
+        $this->form_validation->set_rules('param1', 'Param 1', 'required');
+        $this->form_validation->set_rules('param2', 'Param 2', 'required');
+        $this->form_validation->set_rules('motorcycle', 'Motorcycle', 'required|numeric');
+        $this->form_validation->set_rules('car', 'Car', 'required|numeric');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Field cannot empty!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('master/cost');
+        } else {
+            $data = [
+                'type' => $this->input->post('type'),
+                'service_id' => $this->input->post('service_id'),
+                'param1' => $this->input->post('param1'),
+                'param2' => $this->input->post('param2'),
+                'motorcycle' => $this->input->post('motorcycle'),
+                'car' => $this->input->post('car')
+            ];
+
+            $this->db->insert('master_data_cost', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                New cost added!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('master/cost');
+        }
+    }
+
+    public function editcost()
+    {
+        $data['title'] = 'Cost';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['services'] = $this->Master_model->getAllService();
+        $data['costs'] = $this->Master_model->getAllCost();
+
+        $this->form_validation->set_rules('type', 'Type', 'required');
+        $this->form_validation->set_rules('service_id', 'Service', 'required');
+        $this->form_validation->set_rules('param1', 'Param 1', 'required');
+        $this->form_validation->set_rules('param2', 'Param 2', 'required');
+        $this->form_validation->set_rules('motorcycle', 'Motorcycle', 'required|numeric');
+        $this->form_validation->set_rules('car', 'Car', 'required|numeric');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('master/cost', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $id = $this->input->post('id');
+
+            $data = [
+                'type' => $this->input->post('type'),
+                'service_id' => $this->input->post('service_id'),
+                'param1' => $this->input->post('param1'),
+                'param2' => $this->input->post('param2'),
+                'motorcycle' => $this->input->post('motorcycle'),
+                'car' => $this->input->post('car')
+            ];
+
+            $this->Master_model->editCost($id, $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                Cost updated!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('master/cost');
+        }
+    }
+
+    public function deletecost()
+    {
+        $id = $this->input->post('id');
+        $this->Master_model->deleteCost($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Cost deleted!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        redirect('master/cost');
+    }
+
+    // get service by type
+    function get_service_by_type()
+    {
+        $type = $this->input->post('id', TRUE);
+        $data = $this->Master_model->get_service_by_type($type)->result();
+        echo json_encode($data);
+    }
 }

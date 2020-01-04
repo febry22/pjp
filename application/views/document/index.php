@@ -18,6 +18,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
+                        <th scope="col">Doc Number</th>
                         <th scope="col">Service</th>
                         <th scope="col">Status</th>
                         <th scope="col">Date Created</th>
@@ -28,12 +29,14 @@
                     <?php $i = 1 ?>
                     <?php foreach ($stnks as $s) :
                         $sid = $s['id'];
+                        $sdoc_id = $s['doc_id'];
                         $sservice = $s['name'];
                         $sstatus = $s['status'];
                         $scdate = date("d-m-Y", $s['date_created']);
                     ?>
                         <tr>
                             <th scope="row"><?= $i ?></th>
+                            <td><?= $sdoc_id ?></td>
                             <td><?= $sservice ?></td>
                             <td><?= $sstatus ?></td>
                             <td><?= $scdate ?></td>
