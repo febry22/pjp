@@ -53,7 +53,7 @@
                             <td>Rp <?= number_format($cmotorcycle, 2, ',', '.'); ?></td>
                             <td>Rp <?= number_format($ccar, 2, ',', '.'); ?></td>
                             <td>
-                                <a href="" class="badge badge-primary" data-toggle="modal" data-target="#editModal<?php echo $cid; ?>"> Edit</a>
+                                <a href="<?= base_url('master/editcost/') . $cid ?>" class="badge badge-primary"> Edit</a>
                                 <a href="" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal<?php echo $cid; ?>"> Delete</a>
                             </td>
                         </tr>
@@ -121,70 +121,6 @@
         </div>
     </div>
 </div>
-
-<!-- Modal Edit -->
-<?php foreach ($costs as $c) :
-    $cid = $c['id'];
-    $cservice = $c['name'];
-    $cparam1 = $c['param1'];
-    $cparam2 = $c['param2'];
-    $cmotorcycle = $c['motorcycle'];
-    $ccar = $c['car'];
-?>
-    <div class="modal fade" id="editModal<?= $cid; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Company</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="<?= base_url() . 'master/editcost' ?>" method="post">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input type="hidden" name="id" value="<?= $cid; ?>">
-                            <label for="type">Type</label>
-                            <select name="type" id="type" class="form-control">
-                                <option value="stnk" <?php if ($c['type'] == 'stnk') echo "selected"; ?>>STNK</option>
-                                <option value="bpkb" <?php if ($c['type'] == 'bpkb') echo "selected"; ?>>BPKB</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="service_id">Service name</label>
-                            <select name="service_id" id="service_id" class="form-control">
-                                <?php foreach ($services as $s) :  ?>
-                                    <?php if ($s['type'] != $c['type']) continue; ?>
-                                    <option value="<?= $s['id'] ?>"><?= $s['name'] ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="param1">Param 1</label>
-                            <input type="text" class="form-control" id="param1" name="param1" placeholder="type here..." value="<?php echo $cparam1; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="param2">Param 2</label>
-                            <input type="text" class="form-control" id="param2" name="param2" placeholder="type here..." value="<?php echo $cparam2; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="motorcycle">Motorcycle (IDR)</label>
-                            <input type="text" class="form-control" id="motorcycle" name="motorcycle" placeholder="type here..." value="<?php echo $cmotorcycle; ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="car">Car (IDR)</label>
-                            <input type="text" class="form-control" id="car" name="car" placeholder="type here..." value="<?php echo $ccar; ?>">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-<?php endforeach ?>
 
 <!-- Modal Delete -->
 <?php foreach ($costs as $c) :
