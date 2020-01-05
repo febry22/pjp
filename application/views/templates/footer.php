@@ -105,11 +105,90 @@
                 }
             });
 
-            console.log(id);
+            return false;
+        });
+    });
+</script>
+
+<!-- Count Fee STNK -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#type-stnk').change(function() {
+            var id = $(this).val();
+            $.ajax({
+                url: "<?= base_url('master/get_service_by_type/'); ?>",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    var html = '';
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        html += '<option value=' + data[i].id + '>' + data[i].name + '</option>';
+                    }
+                    $('#service-id-stnk').html(html);
+
+                    serv_id = $('#service-id-stnk').val();
+                    $.ajax({
+                        url: "<?= base_url('master/get_param_by_service/'); ?>",
+                        method: "POST",
+                        data: {
+                            id: serv_id
+                        },
+                        async: true,
+                        dataType: 'json',
+                        success: function(data) {
+                            var html1 = '';
+                            var i;
+                            for (i = 0; i < data.length; i++) {
+                                if (data[i].param1 == '-') {
+                                    html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
+                                } else if (data[i].param2 == '-') {
+                                    html1 += '<option value=' + data[i].id + '>' + data[i].param1 + '</option>';
+                                } else {
+                                    html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
+                                }
+                            }
+                            $('#param-stnk').html(html1);
+                        }
+                    });
+                }
+            });
 
             return false;
         });
 
+        $('#service-id-stnk').change(function() {
+            var id = $(this).val();
+            $.ajax({
+                url: "<?= base_url('master/get_param_by_service/'); ?>",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    var html1 = '';
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i].param1 == '-') {
+                            html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
+                        } else if (data[i].param2 == '-') {
+                            html1 += '<option value=' + data[i].id + '>' + data[i].param1 + '</option>';
+                        } else {
+                            html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
+                        }
+                    }
+                    $('#param-stnk').html(html1);
+                }
+            });
+
+            return false;
+        });
     });
 </script>
 

@@ -106,7 +106,15 @@ class Master_model extends CI_Model
 
     function get_service_by_type($type)
     {
+        $this->db->order_by('name', 'ASC');
         $query = $this->db->get_where('master_data_service', ['type' => $type]);
+        return $query;
+    }
+
+    function get_param_by_service($service_id)
+    {
+        $this->db->order_by('param1', 'ASC');
+        $query = $this->db->get_where('master_data_cost', ['service_id' => $service_id]);
         return $query;
     }
 }

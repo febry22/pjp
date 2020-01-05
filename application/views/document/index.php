@@ -12,13 +12,14 @@
 
             <?= $this->session->flashdata('message'); ?>
 
-            <a href="" class="btn btn-success mb-3">Add New Document</a>
+            <a href="<?= base_url('document/addstnk') ?>" class="btn btn-success mb-3">Add New Document</a>
 
             <table id="table_master" class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Doc Number</th>
+                        <th scope="col">Behalf of</th>
                         <th scope="col">Service</th>
                         <th scope="col">Status</th>
                         <th scope="col">Date Created</th>
@@ -30,6 +31,7 @@
                     <?php foreach ($stnks as $s) :
                         $sid = $s['id'];
                         $sdoc_id = $s['doc_id'];
+                        $sbehalf = $s['behalf_of'];
                         $sservice = $s['name'];
                         $sstatus = $s['status'];
                         $scdate = date("d-m-Y", $s['date_created']);
@@ -37,12 +39,13 @@
                         <tr>
                             <th scope="row"><?= $i ?></th>
                             <td><?= $sdoc_id ?></td>
+                            <td><?= $sbehalf ?></td>
                             <td><?= $sservice ?></td>
                             <td><?= $sstatus ?></td>
                             <td><?= $scdate ?></td>
                             <td>
-                                <a href="" class="badge badge-warning"> Detail</a>
-                                <a href="" class="badge badge-primary"> Edit</a>
+                                <a href="<?= base_url('document/detailstnk/') . $sid ?>" class="badge badge-warning"> Detail</a>
+                                <a href="<?= base_url('document/editstnk/') . $sid ?>" class="badge badge-primary"> Edit</a>
                                 <a href="" class="badge badge-danger" data-toggle="modal" data-target="#deleteModal<?php echo $sid; ?>"> Delete</a>
                             </td>
                         </tr>
