@@ -20,8 +20,8 @@
                         <th scope="col">No</th>
                         <th scope="col">Type</th>
                         <th scope="col">Service</th>
-                        <th scope="col">Param 1</th>
-                        <th scope="col">Param 2</th>
+                        <th scope="col">Location 1</th>
+                        <th scope="col">Location 2</th>
                         <th scope="col">Motorcycle</th>
                         <th scope="col">Car</th>
                         <th scope="col">Action</th>
@@ -97,11 +97,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="param1">Param 1</label>
+                        <label for="param1">Location 1</label>
                         <input type="text" class="form-control" id="param1" name="param1" placeholder="type here...">
                     </div>
                     <div class="form-group">
-                        <label for="param2">Param 2</label>
+                        <label for="param2">Location 2</label>
                         <input type="text" class="form-control" id="param2" name="param2" placeholder="type here...">
                     </div>
                     <div class="form-group">

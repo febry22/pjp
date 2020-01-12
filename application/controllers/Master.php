@@ -390,10 +390,14 @@ class Master extends CI_Controller
         } else {
             if ($this->input->post('param1') == '' || $this->input->post('param1') == NULL) {
                 $param1 = '-';
+            } else {
+                $param1 = $this->input->post('param1');
             }
 
             if ($this->input->post('param2') == '' || $this->input->post('param2') == NULL) {
                 $param2 = '-';
+            } else {
+                $param2 = $this->input->post('param2');
             }
 
             $data = [
@@ -471,6 +475,24 @@ class Master extends CI_Controller
     {
         $service_id = $this->input->post('id', TRUE);
         $data = $this->Master_model->get_param_by_service($service_id)->result();
+        echo json_encode($data);
+    }
+
+    // get fee
+    function get_fee()
+    {
+        $serv_id = $this->input->post('serv_id', TRUE);
+        $param1 = $this->input->post('param1', TRUE);
+        $param2 = $this->input->post('param2', TRUE);
+        $data = $this->Master_model->get_fee($serv_id, $param1, $param2)->result();
+        echo json_encode($data);
+    }
+
+    // get fee by id
+    function get_fee_by_id()
+    {
+        $id = $this->input->post('id', TRUE);
+        $data = $this->Master_model->get_fee_by_id($id)->result();
         echo json_encode($data);
     }
 }

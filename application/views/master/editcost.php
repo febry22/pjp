@@ -34,13 +34,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="param1" class="col-sm-2 col-form-label">Param 1</label>
+                    <label for="param1" class="col-sm-2 col-form-label">Location 1</label>
                     <div class="col-sm-10">
                         <input type="text" name="param1" class="form-control" id="param1" value="<?= $cost['param1'] ?>">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="param2" class="col-sm-2 col-form-label">Param 2</label>
+                    <label for="param2" class="col-sm-2 col-form-label">Location 2</label>
                     <div class="col-sm-10">
                         <input type="text" name="param2" class="form-control" id="param2" value="<?= $cost['param2'] ?>">
                     </div>

@@ -117,4 +117,14 @@ class Master_model extends CI_Model
         $query = $this->db->get_where('master_data_cost', ['service_id' => $service_id]);
         return $query;
     }
+
+    function get_fee($serv_id, $param1, $param2)
+    {
+        return $this->db->get_where('master_data_cost', ['service_id' => $serv_id, 'param1' => $param1, 'param2' => $param2]);
+    }
+
+    function get_fee_by_id($id)
+    {
+        return $this->db->get_where('master_data_cost', ['id' => $id]);
+    }
 }

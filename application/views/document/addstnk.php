@@ -5,7 +5,7 @@
     <h1 class="h3 mb-0 text-gray-800"><?= $title ?></h1>
 
     <div class="row">
-        <div class="col-lg-10 mt-5">
+        <div class="col-lg-6 mt-5">
             <?php if (validation_errors()) : ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert"><?= validation_errors() ?><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
             <?php endif ?>
@@ -17,14 +17,14 @@
                     <div class="card-header text-white bg-primary">Service detail</div>
                     <div class="card-body">
                         <div class="form-row">
-                            <div class="form-group col-md-4">
+                            <div class="d-none form-group col-md-4">
                                 <label for="type-stnk">Type</label>
                                 <select name="type-stnk" id="type-stnk" class="form-control">
-                                    <option value="stnk">STNK</option>
+                                    <option value="stnk" selected>STNK</option>
                                     <option value="bpkb">BPKB</option>
                                 </select>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-lg-8 col-md-8">
                                 <label for="service-id-stnk">Service name</label>
                                 <select name="service-id-stnk" id="service-id-stnk" class="form-control">
                                     <?php foreach ($services as $s) :  ?>
@@ -33,32 +33,54 @@
                                     <?php endforeach ?>
                                 </select>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-lg-4 col-md-4">
                                 <label for="category-stnk">Category</label>
                                 <select name="category-stnk" id="category-stnk" class="form-control">
-                                    <option value="stnk" selected>Motorcycle</option>
-                                    <option value="bpkb">Car</option>
+                                    <option value="motorcycle" selected>Motorcycle</option>
+                                    <option value="car">Car</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-8">
-                                <label for="param-stnk">Param</label>
-                                <select name="param-stnk" id="param-stnk" class="form-control">
-
-                                </select>
+                            <div class="form-group col-lg-12 col-md-12">
+                                <label for="param-stnk">Location</label>
+                                <select name="param-stnk" id="param-stnk" class="form-control"></select>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mt-3">
-                    <div class="form-group col-lg-4 col-md-4 col-sm-4">
+                    <div class="form-group col-lg-12 col-md-12">
                         <div class="card">
-                            <div class="card-header text-white bg-secondary">Total Fee</div>
+                            <div class="card-header text-white bg-primary">Additional costs</div>
+                            <div class="card-body">
+                                <div class="field_wrapper form-row">
+                                    <div class="form-group col-lg-4 col-md-4">
+                                        <label for="add-cost[]">Cost (Rp)</label>
+                                        <input type="text" class="form-control" name="add-cost[]">
+                                    </div>
+                                    <div class="form-group col-lg-7 col-md-7">
+                                        <label for="desc-cost[]">Description</label>
+                                        <input type="text" class="form-control" name="desc-cost[]">
+                                    </div>
+                                    <div class="form-group col-lg-1 col-md-1">
+                                        <label>Action</label>
+                                        <a href="javascript:void(0);" class="add_button"><img src="<?= base_url('assets/'); ?>img/plus.svg" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="form-group col-lg-4 col-md-4">
+                        <div class="card">
+                            <div class="card-header text-white bg-secondary">Total Fee (Rp)</div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="total" name="total">
+                                    <input type="text" class="form-control" id="total" name="total" value="" readonly>
                                 </div>
                             </div>
                         </div>

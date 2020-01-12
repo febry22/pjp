@@ -74,8 +74,6 @@
                 }
             });
 
-            console.log(id);
-
             return false;
         });
 
@@ -151,8 +149,32 @@
                                 } else {
                                     html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
                                 }
+
+                                _serv_id = serv_id;
+                                _param1 = data[i].param1;
+                                _param2 = data[i].param2;
                             }
                             $('#param-stnk').html(html1);
+
+                            category = $('#category-stnk').val();
+                            $.ajax({
+                                url: "<?= base_url('master/get_fee/'); ?>",
+                                method: "POST",
+                                data: {
+                                    serv_id: _serv_id,
+                                    param1: _param1,
+                                    param2: _param2,
+                                },
+                                async: true,
+                                dataType: 'json',
+                                success: function(data) {
+                                    if (category == 'car') {
+                                        $('#total').val(data[0].car);
+                                    } else {
+                                        $('#total').val(data[0].motorcycle);
+                                    }
+                                }
+                            });
                         }
                     });
                 }
@@ -182,8 +204,81 @@
                         } else {
                             html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
                         }
+
+                        _serv_id = id;
+                        _param1 = data[i].param1;
+                        _param2 = data[i].param2;
                     }
                     $('#param-stnk').html(html1);
+
+                    category = $('#category-stnk').val();
+                    $.ajax({
+                        url: "<?= base_url('master/get_fee/'); ?>",
+                        method: "POST",
+                        data: {
+                            serv_id: _serv_id,
+                            param1: _param1,
+                            param2: _param2,
+                        },
+                        async: true,
+                        dataType: 'json',
+                        success: function(data) {
+                            if (category == 'car') {
+                                $('#total').val(data[0].car);
+                            } else {
+                                $('#total').val(data[0].motorcycle);
+                            }
+                        }
+                    });
+                }
+            });
+
+            return false;
+        });
+
+        $('#category-stnk').change(function() {
+            var category = $(this).val();
+            var id = $('#param-stnk').val();
+
+            $.ajax({
+                url: "<?= base_url('master/get_fee_by_id/'); ?>",
+                method: "POST",
+                data: {
+                    id: id,
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    if (category == 'car') {
+                        $('#total').val(data[0].car);
+                    } else {
+                        $('#total').val(data[0].motorcycle);
+                    }
+                }
+            });
+
+            return false;
+        });
+
+        $('#param-stnk').change(function() {
+            var id = $(this).val();
+            var category = $('#category-stnk').val();
+
+            console.log(category);
+            $.ajax({
+                url: "<?= base_url('master/get_fee_by_id/'); ?>",
+                method: "POST",
+                data: {
+                    id: id,
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    if (category == 'car') {
+                        $('#total').val(data[0].car);
+                    } else {
+                        $('#total').val(data[0].motorcycle);
+                    }
                 }
             });
 
@@ -227,6 +322,45 @@
         $('#table_master').DataTable();
         $('#table_partner').DataTable();
         $('#table_cost').DataTable();
+    });
+</script>
+
+<!-- Dynamic Add Costs -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        var maxField = 5; //Input fields increment limitation
+        var addButton = $('.add_button'); //Add button  
+        var wrapper = $('.field_wrapper'); //Input field wrapper
+        var fieldHTML = '<div id="add-cost" class="form-group col-lg-4 col-md-4">\
+                            <input type="text" class="form-control" name="add-cost[]" value="">\
+                        </div>\
+                        <div id="desc-cost" class="form-group col-lg-7 col-md-7">\
+                            <input type="text" class="form-control" name="desc-cost[]" value="">\
+                        </div>\
+                        <div id="button-cost" class="form-group col-lg-1 col-md-1">\
+                            <a href="javascript:void(0);" class="remove_button"><img src="<?= base_url('assets/'); ?>img/minus.svg" /></a>\
+                        </div>'; //New input field html 
+        var x = 1; //Initial field counter is 1
+
+        //Once add button is clicked
+        $(addButton).click(function() {
+            //Check maximum number of input fields
+            if (x < maxField) {
+                x++; //Increment field counter
+                $(wrapper).append(fieldHTML); //Add field html
+            }
+
+
+        });
+
+        //Once remove button is clicked
+        $(wrapper).on('click', '.remove_button', function(e) {
+            e.preventDefault();
+            $('#add-cost').remove(); //Remove field html
+            $('#desc-cost').remove(); //Remove field html
+            $('#button-cost').remove(); //Remove field html
+            x--; //Decrement field counter
+        });
     });
 </script>
 
