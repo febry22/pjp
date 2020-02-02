@@ -12,7 +12,7 @@
 
             <?= $this->session->flashdata('message'); ?>
 
-            <form id="addForm" action="<?= base_url() . 'master/addstnk/' ?>" method="post">
+            <form id="addForm" action="<?= base_url() . 'document/addstnk/' ?>" method="post">
                 <div class="card">
                     <div class="card-header text-white bg-primary">Service detail</div>
                     <div class="card-body">
@@ -53,21 +53,57 @@
                 <div class="row mt-3">
                     <div class="form-group col-lg-12 col-md-12">
                         <div class="card">
+                            <div class="card-header text-white bg-primary">User data</div>
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-lg-6 col-md-6">
+                                        <label for="add-cost">Behalf of</label>
+                                        <input type="text" class="form-control" name="behalf_of">
+                                    </div>
+                                    <div class="form-group col-lg-6 col-md-6">
+                                        <label for="desc-cost">Police Number (current)</label>
+                                        <input type="text" class="form-control" name="desc-cost">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="form-group col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header text-white bg-primary">Note</div>
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-lg-12 col-md-12">
+                                        <!-- <label for="note">Behalf of</label> -->
+                                        <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="form-group col-lg-12 col-md-12">
+                        <div class="card">
                             <div class="card-header text-white bg-primary">Additional costs</div>
                             <div class="card-body">
-                                <div class="field_wrapper form-row">
+                                <div class="form-row">
                                     <div class="form-group col-lg-4 col-md-4">
-                                        <label for="add-cost[]">Cost (Rp)</label>
-                                        <input type="text" class="form-control" name="add-cost[]">
+                                        <label for="add-cost">Cost (Rp)</label>
+                                        <input type="text" class="form-control textfield" value="" id="add-cost" name="add-cost" onkeypress="return isNumber(event)" />
                                     </div>
-                                    <div class="form-group col-lg-7 col-md-7">
-                                        <label for="desc-cost[]">Description</label>
-                                        <input type="text" class="form-control" name="desc-cost[]">
+                                    <div class="form-group col-lg-8 col-md-8">
+                                        <label for="desc-cost">Description</label>
+                                        <input type="text" class="form-control" name="desc-cost">
                                     </div>
-                                    <div class="form-group col-lg-1 col-md-1">
+                                    <!-- <div class="form-group col-lg-1 col-md-1">
                                         <label>Action</label>
-                                        <a href="javascript:void(0);" class="add_button"><img src="<?= base_url('assets/'); ?>img/plus.svg" /></a>
-                                    </div>
+                                        <a href="javascript:void(0);" class="add_button"><img src="<#?= base_url('assets/'); ?>img/plus.svg" /></a>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -77,7 +113,7 @@
                 <div class="row mt-3">
                     <div class="form-group col-lg-4 col-md-4">
                         <div class="card">
-                            <div class="card-header text-white bg-secondary">Total Fee (Rp)</div>
+                            <div class="card-header text-white bg-secondary">Service Fee (Rp)</div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="total" name="total" value="" readonly>
@@ -113,7 +149,7 @@
             <div class="modal-body">Save data?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button type="submit" form="editForm" class="btn btn-primary" href="">Save</button>
+                <button type="submit" form="addForm" class="btn btn-primary" href="">Save</button>
             </div>
         </div>
     </div>

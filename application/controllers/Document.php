@@ -16,7 +16,7 @@ class Document extends CI_Controller
     {
         $data['title'] = 'STNK';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['stnks'] = $this->Document_model->getStnk($data['user']['id'], $data['user']['role_id']);
+        $data['stnks'] = $this->Document_model->getStnk($data['user']['id'], $data['user']['role_id'], $data['user']['partner_id']);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -45,6 +45,9 @@ class Document extends CI_Controller
             $this->load->view('document/addstnk', $data);
             $this->load->view('templates/footer');
         } else {
+            echo 123123;
+            die();
+
             // $data = [
             //     'type' => $this->input->post('type'),
             //     'service_id' => $this->input->post('service_id'),
