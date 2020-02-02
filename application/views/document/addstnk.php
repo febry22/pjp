@@ -57,12 +57,12 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-lg-6 col-md-6">
-                                        <label for="add-cost">Behalf of</label>
+                                        <label for="behalf_of">Behalf of</label>
                                         <input type="text" class="form-control" name="behalf_of">
                                     </div>
                                     <div class="form-group col-lg-6 col-md-6">
-                                        <label for="desc-cost">Police Number (current)</label>
-                                        <input type="text" class="form-control" name="desc-cost">
+                                        <label for="police_num">Police Number (current)</label>
+                                        <input type="text" class="form-control" name="police_num">
                                     </div>
                                 </div>
                             </div>

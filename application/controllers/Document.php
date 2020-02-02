@@ -31,12 +31,11 @@ class Document extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['services'] = $this->Master_model->getAllService();
 
-        $this->form_validation->set_rules('type', 'Type', 'required');
-        $this->form_validation->set_rules('service_id', 'Service', 'required');
-        $this->form_validation->set_rules('param1', 'Param 1', 'required');
-        $this->form_validation->set_rules('param2', 'Param 2', 'required');
-        $this->form_validation->set_rules('motorcycle', 'Motorcycle', 'required|numeric');
-        $this->form_validation->set_rules('car', 'Car', 'required|numeric');
+        $this->form_validation->set_rules('type-stnk', 'Type', 'required');
+        $this->form_validation->set_rules('service-id-stnk', 'Service', 'required');
+        $this->form_validation->set_rules('category-stnk', 'Category', 'required');
+        $this->form_validation->set_rules('param-stnk', 'Location', 'required');
+        $this->form_validation->set_rules('behalf_of', 'Behalf of', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -45,22 +44,53 @@ class Document extends CI_Controller
             $this->load->view('document/addstnk', $data);
             $this->load->view('templates/footer');
         } else {
-            echo 123123;
-            die();
+            $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $partner = $this->db->get_where('master_data_partner', ['id' => $user['partner_id']])->row_array();
 
-            // $data = [
-            //     'type' => $this->input->post('type'),
-            //     'service_id' => $this->input->post('service_id'),
-            //     'param1' => $this->input->post('param1'),
-            //     'param2' => $this->input->post('param2'),
-            //     'motorcycle' => $this->input->post('motorcycle'),
-            //     'car' => $this->input->post('car')
-            // ];
+            if (!$this->input->post('add_cost')) $add_cost = 0;
+            else $add_cost = $this->input->post('add_cost');
 
-            // $this->Master_model->editCost($id, $data);
-            // $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            //     Cost updated!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-            // redirect('master/cost');
+            $doc_id = 'PJP/' . date("Y") . '/' . date("m") . '/' . $partner['code'];
+            $total = $this->input->post('total') + $add_cost;
+
+            $data = [
+                'service_id' => $this->input->post('service-id-stnk'),
+                'doc_id' => $doc_id,
+                'behalf_of' => $this->input->post('behalf_of'),
+                'note' => $this->input->post('note'),
+                'sub_total' => $this->input->post('total'),
+                'total' => $total,
+                'status' => 'Draft',
+                'created_by' => $user['id'],
+                'company_id' => $user['company_id'],
+                'partner_id' => $user['partner_id'],
+                'date_created' => time(),
+                'modified_by' => $user['id'],
+                'date_modified' => time(),
+                'delete_status' => 0
+            ];
+
+            $this->db->insert('doc_stnk', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                New document added!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('document');
         }
+    }
+
+    public function delete()
+    {
+        $id = $this->input->post('id');
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data = [
+            'modified_by' => $user['id'],
+            'date_modified' => time(),
+            'delete_status' => 1
+        ];
+
+        $this->Document_model->deleteStnk($id, $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Document deleted!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+        redirect('document');
     }
 }
