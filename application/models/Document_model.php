@@ -1,6 +1,22 @@
 <?php
 class Document_model extends CI_Model
 {
+    function get_next_id_stnk()
+    {
+        $query = $this->db->query("SELECT MAX(RIGHT(doc_id,3)) as max FROM doc_stnk WHERE DATE(from_unixtime(date_modified)) = CURDATE()");
+        $kd = "";
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $k) {
+                $tmp = ((int) $k->max) + 1;
+                $kd = sprintf("%03s", $tmp);
+            }
+        } else {
+            $kd = "001";
+        }
+
+        return $kd;
+    }
+
     public function getStnk($id, $role_id, $partner_id)
     {
         if ($role_id == 1) {

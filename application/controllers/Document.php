@@ -45,13 +45,37 @@ class Document extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $partner = $this->db->get_where('master_data_partner', ['id' => $user['partner_id']])->row_array();
+            $next = $this->Document_model->get_next_id_stnk();
+
+            // Upload img config
+            $config['allowed_types'] = 'jpg|png';
+            $config['max_size']     = '1024';
+            $config['upload_path'] = './assets/img/stnk/';
+            $this->load->library('upload', $config);
 
             if (!$this->input->post('add_cost')) $add_cost = 0;
             else $add_cost = $this->input->post('add_cost');
 
-            $doc_id = 'PJP/' . date("Y") . '/' . date("m") . '/' . $partner['code'];
+            $doc_id = 'PJP/' . date("Y") . '/' . date("m") . '/' . date("d") . '/' . $next;
             $total = $this->input->post('total') + $add_cost;
+
+            // Upload STNK asli
+            if ($this->upload->do_upload('stnk_asli')) {
+                $this->db->set('stnk_asli',  $this->upload->data('file_name'));
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                    . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                redirect('document/addstnk');
+            }
+
+            // Upload STNK fc
+            if ($this->upload->do_upload('stnk_fc')) {
+                $this->db->set('stnk_fc', $this->upload->data('file_name'));
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                    . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                redirect('document/addstnk');
+            }
 
             $data = [
                 'service_id' => $this->input->post('service-id-stnk'),

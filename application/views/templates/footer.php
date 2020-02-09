@@ -204,11 +204,11 @@
                         } else {
                             html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
                         }
-
-                        _serv_id = id;
-                        _param1 = data[i].param1;
-                        _param2 = data[i].param2;
                     }
+
+                    _serv_id = id;
+                    _param1 = data[0].param1;
+                    _param2 = data[0].param2;
                     $('#param-stnk').html(html1);
 
                     category = $('#category-stnk').val();
@@ -264,7 +264,6 @@
             var id = $(this).val();
             var category = $('#category-stnk').val();
 
-            console.log(category);
             $.ajax({
                 url: "<?= base_url('master/get_fee_by_id/'); ?>",
                 method: "POST",
