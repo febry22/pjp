@@ -45,6 +45,14 @@ class Document_model extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function getDetailStnk($id)
+    {
+        $this->db->from('doc_stnk');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->row_array();
+    }
+
     public function deleteStnk($id, $data)
     {
         $this->db->where('id', $id);
