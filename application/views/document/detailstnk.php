@@ -5,7 +5,7 @@
     <h1 class="h3 mb-0 text-gray-800"><?= $title ?></h1>
 
     <div class="row">
-        <div class="col-lg-6 mt-5">
+        <div class="col-lg-10 mt-5">
             <?php if (validation_errors()) : ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert"><?= validation_errors() ?><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
             <?php endif ?>
@@ -14,7 +14,7 @@
             <form id="detailForm">
                 <fieldset disabled>
                     <div class="card">
-                        <div class="card-header text-white bg-primary">Document status</div>
+                        <div class="card-header text-white bg-warning">Document status</div>
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="form-group col-lg-8 col-md-8">
@@ -32,7 +32,7 @@
                     <div class="row mt-3">
                         <div class="form-group col-lg-12 col-md-12">
                             <div class="card">
-                                <div class="card-header text-white bg-primary">Service detail</div>
+                                <div class="card-header text-white bg-secondary">Service detail</div>
                                 <div class="card-body">
                                     <div class="form-row">
                                         <div class="d-none form-group col-md-4">
@@ -59,7 +59,7 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-lg-12 col-md-12">
+                                        <div class="form-group col-lg-8 col-md-8">
                                             <label for="param-stnk">Location</label>
                                             <select name="param-stnk" id="param-stnk" class="form-control">
                                                 <?php foreach ($costs as $c) :  ?>
@@ -72,6 +72,10 @@
                                                     </option>
                                                 <?php endforeach ?>
                                             </select>
+                                        </div>
+                                        <div class="form-group col-lg-4 col-md-4">
+                                            <label for="total">Service Fee (Rp)</label>
+                                            <input type="text" class="form-control" id="total" name="total" value="<?= $stnk['sub_total'] ?>" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -127,89 +131,111 @@
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="ktp_asli">KTP Asli</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="ktp_asli" name="ktp_asli">
-                                                <label class="custom-file-label" for="ktp_asli">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['ktp_asli']) echo base_url('/assets/img/stnk/') . $stnk['ktp_asli'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['ktp_asli'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="ktp_fc">KTP Fotocopy</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="ktp_fc" name="ktp_fc">
-                                                <label class="custom-file-label" for="ktp_fc">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['ktp_fc']) echo base_url('/assets/img/stnk/') . $stnk['ktp_fc'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['ktp_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="stnk_asli">STNK Asli</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="stnk_asli" name="stnk_asli">
-                                                <label class="custom-file-label" for="stnk_asli">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['stnk_asli']) echo base_url('/assets/img/stnk/') . $stnk['stnk_asli'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['stnk_asli'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="stnk_fc">STNK Fotocopy</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="stnk_fc" name="stnk_fc">
-                                                <label class="custom-file-label" for="stnk_fc">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['stnk_fc']) echo base_url('/assets/img/stnk/') . $stnk['stnk_fc'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['stnk_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="bpkb_asli">BPKB Asli</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="bpkb_asli" name="bpkb_asli">
-                                                <label class="custom-file-label" for="bpkb_asli">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['bpkb_asli']) echo base_url('/assets/img/stnk/') . $stnk['bpkb_asli'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['bpkb_asli'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="bpkb_fc">BPKB Fotocopy</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="bpkb_fc" name="bpkb_fc">
-                                                <label class="custom-file-label" for="bpkb_fc">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['bpkb_fc']) echo base_url('/assets/img/stnk/') . $stnk['bpkb_fc'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['bpkb_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="sk_kehilangan">SK Kehilangan</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="sk_kehilangan" name="sk_kehilangan">
-                                                <label class="custom-file-label" for="sk_kehilangan">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['sk_kehilangan']) echo base_url('/assets/img/stnk/') . $stnk['sk_kehilangan'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['sk_kehilangan'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="ktp_baru_fc">KTP Baru Fotocopy</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="ktp_baru_fc" name="ktp_baru_fc">
-                                                <label class="custom-file-label" for="ktp_baru_fc">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['ktp_baru_fc']) echo base_url('/assets/img/stnk/') . $stnk['ktp_baru_fc'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['ktp_baru_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="invoice">Invoice Penjualan</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="invoice" name="invoice">
-                                                <label class="custom-file-label" for="invoice">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['invoice']) echo base_url('/assets/img/stnk/') . $stnk['invoice'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['invoice'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="sk_lising">SK Lising</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="sk_lising" name="sk_lising">
-                                                <label class="custom-file-label" for="sk_lising">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['sk_lising']) echo base_url('/assets/img/stnk/') . $stnk['sk_lising'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['sk_lising'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-6 col-md-6">
                                             <label for="kertas_gesek">Kertas Gesek</label>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="kertas_gesek" name="kertas_gesek">
-                                                <label class="custom-file-label" for="kertas_gesek">Choose image</label>
+                                            <div>
+                                                <a href="<?php if ($stnk['kertas_gesek']) echo base_url('/assets/img/stnk/') . $stnk['kertas_gesek'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/stnk/') . $stnk['kertas_gesek'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -247,19 +273,6 @@
                                             <label for="desc_cost">Description</label>
                                             <input type="text" class="form-control" id="desc_cost" name="desc_cost" value="<?= $stnk['desc_cost'] ?>">
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-lg-4 col-md-4">
-                            <div class="card">
-                                <div class="card-header text-white bg-secondary">Service Fee (Rp)</div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="total" name="total" value="<?= $stnk['total'] ?>" readonly>
                                     </div>
                                 </div>
                             </div>

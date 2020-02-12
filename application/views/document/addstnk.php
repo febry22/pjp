@@ -5,7 +5,7 @@
     <h1 class="h3 mb-0 text-gray-800"><?= $title ?></h1>
 
     <div class="row">
-        <div class="col-lg-6 mt-5">
+        <div class="col-lg-10 mt-5">
             <?php if (validation_errors()) : ?>
                 <div class="alert alert-danger alert-dismissible fade show" role="alert"><?= validation_errors() ?><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
             <?php endif ?>
@@ -14,7 +14,7 @@
 
             <?= form_open_multipart('document/addstnk/', 'id="addForm"'); ?>
             <div class="card">
-                <div class="card-header text-white bg-primary">Service detail</div>
+                <div class="card-header text-white bg-secondary">Service detail</div>
                 <div class="card-body">
                     <div class="form-row">
                         <div class="d-none form-group col-md-4">
@@ -43,9 +43,13 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-lg-12 col-md-12">
+                        <div class="form-group col-lg-8 col-md-8">
                             <label for="param-stnk">Location</label>
                             <select name="param-stnk" id="param-stnk" class="form-control"></select>
+                        </div>
+                        <div class="form-group col-lg-4 col-md-4">
+                            <label for="total">Service Fee (Rp)</label>
+                            <input type="text" class="form-control" id="total" name="total" value="" readonly>
                         </div>
                     </div>
                 </div>
@@ -224,19 +228,6 @@
                                         <label>Action</label>
                                         <a href="javascript:void(0);" class="add_button"><img src="<#?= base_url('assets/'); ?>img/plus.svg" /></a>
                                     </div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-lg-4 col-md-4">
-                    <div class="card">
-                        <div class="card-header text-white bg-secondary">Service Fee (Rp)</div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="total" name="total" value="" readonly>
                             </div>
                         </div>
                     </div>

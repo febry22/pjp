@@ -53,6 +53,12 @@ class Document_model extends CI_Model
         return $query->row_array();
     }
 
+    public function editStnk($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('doc_stnk', $data);
+    }
+
     public function deleteStnk($id, $data)
     {
         $this->db->where('id', $id);
