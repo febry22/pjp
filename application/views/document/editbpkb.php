@@ -11,23 +11,23 @@
             <?php endif ?>
 
             <?= $this->session->flashdata('message'); ?>
-            <?= form_open_multipart('document/editstnk/' . $stnk['id'], 'id="editForm"'); ?>
+            <?= form_open_multipart('document/editbpkb/' . $bpkb['id'], 'id="editForm"'); ?>
             <div class="card">
                 <div class="card-header text-white bg-warning">Document status</div>
                 <div class="card-body">
                     <div class="form-row">
                         <div class="form-group col-lg-8 col-md-8">
                             <label for="doc_id">Document ID</label>
-                            <input type="text" class="form-control" id="doc_id" name="doc_id" value="<?= $stnk['doc_id'] ?>" readonly />
+                            <input type="text" class="form-control" id="doc_id" name="doc_id" value="<?= $bpkb['doc_id'] ?>" readonly />
                         </div>
                         <div class="form-group col-lg-4 col-md-4">
                             <label for="status">Status</label>
                             <select name="status" id="status" class="form-control">
-                                <option value="draft" <?php if ($stnk['status'] == 'draft') echo 'selected' ?>>Draft</option>
-                                <option value="to_samsat" <?php if ($stnk['status'] == 'to_samsat') echo 'selected' ?>>Process to Samsat</option>
-                                <option value="from_samsat" <?php if ($stnk['status'] == 'from_samsat') echo 'selected' ?>>Checking from Samsat</option>
-                                <option value="to_bfi_branch" <?php if ($stnk['status'] == 'to_bfi_branch') echo 'selected' ?>>Process to BFI</option>
-                                <option value="done" <?php if ($stnk['status'] == 'done') echo 'selected' ?>>Done</option>
+                                <option value="draft" <?php if ($bpkb['status'] == 'draft') echo 'selected' ?>>Draft</option>
+                                <option value="to_samsat" <?php if ($bpkb['status'] == 'to_samsat') echo 'selected' ?>>Process to Samsat</option>
+                                <option value="from_samsat" <?php if ($bpkb['status'] == 'from_samsat') echo 'selected' ?>>Checking from Samsat</option>
+                                <option value="to_bfi_branch" <?php if ($bpkb['status'] == 'to_bfi_branch') echo 'selected' ?>>Process to BFI</option>
+                                <option value="done" <?php if ($bpkb['status'] == 'done') echo 'selected' ?>>Done</option>
                             </select>
                         </div>
                     </div>
@@ -44,23 +44,23 @@
                                     <div class="d-none form-group col-md-4">
                                         <label for="type">Type</label>
                                         <select name="type" id="type" class="form-control">
-                                            <option value="stnk" selected>STNK</option>
-                                            <option value="bpkb">BPKB</option>
+                                            <option value="stnk">STNK</option>
+                                            <option value="bpkb" selected>BPKB</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-8 col-md-8">
                                         <label for="service-id">Service name</label>
                                         <select name="service-id" id="service-id" class="form-control">
                                             <?php foreach ($services as $s) :  ?>
-                                                <option value="<?= $s['id'] ?>" <?php if ($s['id'] == $stnk['service_id']) echo "selected"; ?>><?= $s['name'] ?></option>
+                                                <option value="<?= $s['id'] ?>" <?php if ($s['id'] == $bpkb['service_id']) echo "selected"; ?>><?= $s['name'] ?></option>
                                             <?php endforeach ?>
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-4 col-md-4">
                                         <label for="category">Category</label>
                                         <select name="category" id="category" class="form-control">
-                                            <option value="motorcycle" <?php if ($stnk['category'] == 'motorcycle') echo 'selected' ?>>Motorcycle</option>
-                                            <option value="car" <?php if ($stnk['category'] == 'car') echo 'selected' ?>>Car</option>
+                                            <option value="motorcycle" <?php if ($bpkb['category'] == 'motorcycle') echo 'selected' ?>>Motorcycle</option>
+                                            <option value="car" <?php if ($bpkb['category'] == 'car') echo 'selected' ?>>Car</option>
                                         </select>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                         <label for="param">Location</label>
                                         <select name="param" id="param" class="form-control">
                                             <?php foreach ($costs as $c) :  ?>
-                                                <option value="<?= $c['id'] ?>" <?php if ($c['id'] == $stnk['cost_id']) echo "selected"; ?>>
+                                                <option value="<?= $c['id'] ?>" <?php if ($c['id'] == $bpkb['cost_id']) echo "selected"; ?>>
                                                     <?php
                                                     if ($c['param1'] == '-') echo '-';
                                                     elseif ($c['param2'] == '-') echo $c['param1'];
@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="form-group col-lg-4 col-md-4">
                                         <label for="total">Service Fee (Rp)</label>
-                                        <input type="text" class="form-control" id="total" name="total" value="<?= $stnk['sub_total'] ?>" readonly>
+                                        <input type="text" class="form-control" id="total" name="total" value="<?= $bpkb['sub_total'] ?>" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -98,31 +98,31 @@
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="behalf_of">Behalf of</label>
-                                    <input type="text" class="form-control" id="behalf_of" name="behalf_of" value="<?= $stnk['behalf_of'] ?>">
+                                    <input type="text" class="form-control" id="behalf_of" name="behalf_of" value="<?= $bpkb['behalf_of'] ?>">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="no_bpkb">No BPKB</label>
-                                    <input type="text" class="form-control" id="no_bpkb" name="no_bpkb" value="<?= $stnk['no_bpkb'] ?>">
+                                    <input type="text" class="form-control" id="no_bpkb" name="no_bpkb" value="<?= $bpkb['no_bpkb'] ?>">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="nama_stnk">Nama STNK</label>
-                                    <input type="text" class="form-control" id="nama_stnk" name="nama_stnk" value="<?= $stnk['nama_stnk'] ?>">
+                                    <input type="text" class="form-control" id="nama_stnk" name="nama_stnk" value="<?= $bpkb['nama_stnk'] ?>">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="nama_bpkb">Nama BPKB</label>
-                                    <input type="text" class="form-control" id="nama_bpkb" name="nama_bpkb" value="<?= $stnk['nama_bpkb'] ?>">
+                                    <input type="text" class="form-control" id="nama_bpkb" name="nama_bpkb" value="<?= $bpkb['nama_bpkb'] ?>">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="police_num_old">Nomor Polisi Lama</label>
-                                    <input type="text" class="form-control" id="police_num_old" name="police_num_old" value="<?= $stnk['police_num_old'] ?>">
+                                    <input type="text" class="form-control" id="police_num_old" name="police_num_old" value="<?= $bpkb['police_num_old'] ?>">
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="police_num_new">Nomor Polisi Baru</label>
-                                    <input type="text" class="form-control" id="police_num_new" name="police_num_new" value="<?= $stnk['police_num_new'] ?>">
+                                    <input type="text" class="form-control" id="police_num_new" name="police_num_new" value="<?= $bpkb['police_num_new'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -140,9 +140,9 @@
                                     <label for="ktp_asli">KTP Asli</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['ktp_asli']) echo base_url('/assets/img/stnk/') . $stnk['ktp_asli'];
+                                            <a href="<?php if ($bpkb['ktp_asli']) echo base_url('/assets/img/stnk/') . $bpkb['ktp_asli'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['ktp_asli'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['ktp_asli'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -157,9 +157,9 @@
                                     <label for="ktp_fc">KTP Fotocopy</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['ktp_fc']) echo base_url('/assets/img/stnk/') . $stnk['ktp_fc'];
+                                            <a href="<?php if ($bpkb['ktp_fc']) echo base_url('/assets/img/stnk/') . $bpkb['ktp_fc'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['ktp_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['ktp_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -176,9 +176,9 @@
                                     <label for="stnk_asli">STNK Asli</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['stnk_asli']) echo base_url('/assets/img/stnk/') . $stnk['stnk_asli'];
+                                            <a href="<?php if ($bpkb['stnk_asli']) echo base_url('/assets/img/stnk/') . $bpkb['stnk_asli'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['stnk_asli'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['stnk_asli'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -193,9 +193,9 @@
                                     <label for="stnk_fc">STNK Fotocopy</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['stnk_fc']) echo base_url('/assets/img/stnk/') . $stnk['stnk_fc'];
+                                            <a href="<?php if ($bpkb['stnk_fc']) echo base_url('/assets/img/stnk/') . $bpkb['stnk_fc'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['stnk_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['stnk_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -212,9 +212,9 @@
                                     <label for="bpkb_asli">BPKB Asli</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['bpkb_asli']) echo base_url('/assets/img/stnk/') . $stnk['bpkb_asli'];
+                                            <a href="<?php if ($bpkb['bpkb_asli']) echo base_url('/assets/img/stnk/') . $bpkb['bpkb_asli'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['bpkb_asli'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['bpkb_asli'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -229,9 +229,9 @@
                                     <label for="bpkb_fc">BPKB Fotocopy</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['bpkb_fc']) echo base_url('/assets/img/stnk/') . $stnk['bpkb_fc'];
+                                            <a href="<?php if ($bpkb['bpkb_fc']) echo base_url('/assets/img/stnk/') . $bpkb['bpkb_fc'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['bpkb_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['bpkb_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -248,9 +248,9 @@
                                     <label for="sk_kehilangan">SK Kehilangan</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['sk_kehilangan']) echo base_url('/assets/img/stnk/') . $stnk['sk_kehilangan'];
+                                            <a href="<?php if ($bpkb['sk_kehilangan']) echo base_url('/assets/img/stnk/') . $bpkb['sk_kehilangan'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['sk_kehilangan'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['sk_kehilangan'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -265,9 +265,9 @@
                                     <label for="ktp_baru_fc">KTP Baru Fotocopy</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['ktp_baru_fc']) echo base_url('/assets/img/stnk/') . $stnk['ktp_baru_fc'];
+                                            <a href="<?php if ($bpkb['ktp_baru_fc']) echo base_url('/assets/img/stnk/') . $bpkb['ktp_baru_fc'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['ktp_baru_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['ktp_baru_fc'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -284,9 +284,9 @@
                                     <label for="invoice">Invoice Penjualan</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['invoice']) echo base_url('/assets/img/stnk/') . $stnk['invoice'];
+                                            <a href="<?php if ($bpkb['invoice']) echo base_url('/assets/img/stnk/') . $bpkb['invoice'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['invoice'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['invoice'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -301,9 +301,9 @@
                                     <label for="sk_lising">SK Lising</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['sk_lising']) echo base_url('/assets/img/stnk/') . $stnk['sk_lising'];
+                                            <a href="<?php if ($bpkb['sk_lising']) echo base_url('/assets/img/stnk/') . $bpkb['sk_lising'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['sk_lising'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['sk_lising'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -320,9 +320,9 @@
                                     <label for="kertas_gesek">Kertas Gesek</label>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <a href="<?php if ($stnk['kertas_gesek']) echo base_url('/assets/img/stnk/') . $stnk['kertas_gesek'];
+                                            <a href="<?php if ($bpkb['kertas_gesek']) echo base_url('/assets/img/stnk/') . $bpkb['kertas_gesek'];
                                                         else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
-                                                <img src="<?= base_url('/assets/img/stnk/') . $stnk['kertas_gesek'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['kertas_gesek'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
                                             </a>
                                         </div>
                                         <div class="col-sm-8">
@@ -346,7 +346,7 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="form-group col-lg-12 col-md-12">
-                                    <textarea class="form-control" id="note" name="note" rows="3"><?= $stnk['note'] ?></textarea>
+                                    <textarea class="form-control" id="note" name="note" rows="3"><?= $bpkb['note'] ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -362,11 +362,11 @@
                             <div class="form-row">
                                 <div class="form-group col-lg-4 col-md-4">
                                     <label for="add_cost">Cost (Rp)</label>
-                                    <input type="text" class="form-control" id="add_cost" name="add_cost" value="<?= $stnk['add_cost'] ?>" />
+                                    <input type="text" class="form-control" id="add_cost" name="add_cost" value="<?= $bpkb['add_cost'] ?>" />
                                 </div>
                                 <div class="form-group col-lg-8 col-md-8">
                                     <label for="desc_cost">Description</label>
-                                    <input type="text" class="form-control" id="desc_cost" name="desc_cost" value="<?= $stnk['desc_cost'] ?>">
+                                    <input type="text" class="form-control" id="desc_cost" name="desc_cost" value="<?= $bpkb['desc_cost'] ?>">
                                 </div>
                             </div>
                         </div>

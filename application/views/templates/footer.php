@@ -111,77 +111,74 @@
 <!-- Count Fee STNK -->
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#type-stnk').change(function() {
-            var id = $(this).val();
-            $.ajax({
-                url: "<?= base_url('master/get_service_by_type/'); ?>",
-                method: "POST",
-                data: {
-                    id: id
-                },
-                async: true,
-                dataType: 'json',
-                success: function(data) {
-                    var html = '';
-                    var i;
-                    for (i = 0; i < data.length; i++) {
-                        html += '<option value=' + data[i].id + '>' + data[i].name + '</option>';
-                    }
-                    $('#service-id-stnk').html(html);
-
-                    serv_id = $('#service-id-stnk').val();
-                    $.ajax({
-                        url: "<?= base_url('master/get_param_by_service/'); ?>",
-                        method: "POST",
-                        data: {
-                            id: serv_id
-                        },
-                        async: true,
-                        dataType: 'json',
-                        success: function(data) {
-                            var html1 = '';
-                            var i;
-                            for (i = 0; i < data.length; i++) {
-                                if (data[i].param1 == '-') {
-                                    html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
-                                } else if (data[i].param2 == '-') {
-                                    html1 += '<option value=' + data[i].id + '>' + data[i].param1 + '</option>';
-                                } else {
-                                    html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
-                                }
-
-                                _serv_id = serv_id;
-                                _param1 = data[i].param1;
-                                _param2 = data[i].param2;
-                            }
-                            $('#param-stnk').html(html1);
-
-                            category = $('#category-stnk').val();
-                            $.ajax({
-                                url: "<?= base_url('master/get_fee/'); ?>",
-                                method: "POST",
-                                data: {
-                                    serv_id: _serv_id,
-                                    param1: _param1,
-                                    param2: _param2,
-                                },
-                                async: true,
-                                dataType: 'json',
-                                success: function(data) {
-                                    if (category == 'car') {
-                                        $('#total').val(data[0].car);
-                                    } else {
-                                        $('#total').val(data[0].motorcycle);
-                                    }
-                                }
-                            });
-                        }
-                    });
+        var id = 'stnk';
+        $.ajax({
+            url: "<?= base_url('master/get_service_by_type/'); ?>",
+            method: "POST",
+            data: {
+                id: id
+            },
+            async: true,
+            dataType: 'json',
+            success: function(data) {
+                var html = '';
+                var i;
+                for (i = 0; i < data.length; i++) {
+                    html += '<option value=' + data[i].id + '>' + data[i].name + '</option>';
                 }
-            });
+                $('#service-id-stnk').html(html);
 
-            return false;
+                serv_id = $('#service-id-stnk').val();
+                $.ajax({
+                    url: "<?= base_url('master/get_param_by_service/'); ?>",
+                    method: "POST",
+                    data: {
+                        id: serv_id
+                    },
+                    async: true,
+                    dataType: 'json',
+                    success: function(data) {
+                        var html1 = '';
+                        var i;
+                        for (i = 0; i < data.length; i++) {
+                            if (data[i].param1 == '-') {
+                                html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
+                            } else if (data[i].param2 == '-') {
+                                html1 += '<option value=' + data[i].id + '>' + data[i].param1 + '</option>';
+                            } else {
+                                html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
+                            }
+
+                            _serv_id = serv_id;
+                            _param1 = data[i].param1;
+                            _param2 = data[i].param2;
+                        }
+                        $('#param-stnk').html(html1);
+
+                        category = $('#category-stnk').val();
+                        $.ajax({
+                            url: "<?= base_url('master/get_fee/'); ?>",
+                            method: "POST",
+                            data: {
+                                serv_id: _serv_id,
+                                param1: _param1,
+                                param2: _param2,
+                            },
+                            async: true,
+                            dataType: 'json',
+                            success: function(data) {
+                                if (category == 'car') {
+                                    $('#total').val(data[0].car);
+                                } else {
+                                    $('#total').val(data[0].motorcycle);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
         });
+        return false;
 
         $('#service-id-stnk').change(function() {
             var id = $(this).val();
@@ -286,6 +283,181 @@
     });
 </script>
 
+<!-- Count Fee BPKB -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        var id = 'bpkb';
+        $.ajax({
+            url: "<?= base_url('master/get_service_by_type/'); ?>",
+            method: "POST",
+            data: {
+                id: id
+            },
+            async: true,
+            dataType: 'json',
+            success: function(data) {
+                var html = '';
+                var i;
+                for (i = 0; i < data.length; i++) {
+                    html += '<option value=' + data[i].id + '>' + data[i].name + '</option>';
+                }
+                $('#service-id-bpkb').html(html);
+
+                serv_id = $('#service-id-bpkb').val();
+                $.ajax({
+                    url: "<?= base_url('master/get_param_by_service/'); ?>",
+                    method: "POST",
+                    data: {
+                        id: serv_id
+                    },
+                    async: true,
+                    dataType: 'json',
+                    success: function(data) {
+                        var html1 = '';
+                        var i;
+                        for (i = 0; i < data.length; i++) {
+                            if (data[i].param1 == '-') {
+                                html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
+                            } else if (data[i].param2 == '-') {
+                                html1 += '<option value=' + data[i].id + '>' + data[i].param1 + '</option>';
+                            } else {
+                                html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
+                            }
+
+                            _serv_id = serv_id;
+                            _param1 = data[i].param1;
+                            _param2 = data[i].param2;
+                        }
+                        $('#param-bpkb').html(html1);
+
+                        category = $('#category-bpkb').val();
+                        $.ajax({
+                            url: "<?= base_url('master/get_fee/'); ?>",
+                            method: "POST",
+                            data: {
+                                serv_id: _serv_id,
+                                param1: _param1,
+                                param2: _param2,
+                            },
+                            async: true,
+                            dataType: 'json',
+                            success: function(data) {
+                                if (category == 'car') {
+                                    $('#total').val(data[0].car);
+                                } else {
+                                    $('#total').val(data[0].motorcycle);
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
+        return false;
+
+        $('#service-id-bpkb').change(function() {
+            var id = $(this).val();
+            $.ajax({
+                url: "<?= base_url('master/get_param_by_service/'); ?>",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    var html1 = '';
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        if (data[i].param1 == '-') {
+                            html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
+                        } else if (data[i].param2 == '-') {
+                            html1 += '<option value=' + data[i].id + '>' + data[i].param1 + '</option>';
+                        } else {
+                            html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
+                        }
+                    }
+
+                    _serv_id = id;
+                    _param1 = data[0].param1;
+                    _param2 = data[0].param2;
+                    $('#param-bpkb').html(html1);
+
+                    category = $('#category-bpkb').val();
+                    $.ajax({
+                        url: "<?= base_url('master/get_fee/'); ?>",
+                        method: "POST",
+                        data: {
+                            serv_id: _serv_id,
+                            param1: _param1,
+                            param2: _param2,
+                        },
+                        async: true,
+                        dataType: 'json',
+                        success: function(data) {
+                            if (category == 'car') {
+                                $('#total').val(data[0].car);
+                            } else {
+                                $('#total').val(data[0].motorcycle);
+                            }
+                        }
+                    });
+                }
+            });
+
+            return false;
+        });
+
+        $('#category-bpkb').change(function() {
+            var category = $(this).val();
+            var id = $('#param-bpkb').val();
+
+            $.ajax({
+                url: "<?= base_url('master/get_fee_by_id/'); ?>",
+                method: "POST",
+                data: {
+                    id: id,
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    if (category == 'car') {
+                        $('#total').val(data[0].car);
+                    } else {
+                        $('#total').val(data[0].motorcycle);
+                    }
+                }
+            });
+
+            return false;
+        });
+
+        $('#param-bpkb').change(function() {
+            var id = $(this).val();
+            var category = $('#category-bpkb').val();
+
+            $.ajax({
+                url: "<?= base_url('master/get_fee_by_id/'); ?>",
+                method: "POST",
+                data: {
+                    id: id,
+                },
+                async: true,
+                dataType: 'json',
+                success: function(data) {
+                    if (category == 'car') {
+                        $('#total').val(data[0].car);
+                    } else {
+                        $('#total').val(data[0].motorcycle);
+                    }
+                }
+            });
+
+            return false;
+        });
+    });
+</script>
+
 <!-- Ajax Change Access -->
 <script>
     $('.custom-file-input').on('change', function() {
@@ -321,6 +493,8 @@
         $('#table_master').DataTable();
         $('#table_partner').DataTable();
         $('#table_cost').DataTable();
+        $('#table_stnk').DataTable();
+        $('#table_bpkb').DataTable();
     });
 </script>
 
