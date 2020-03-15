@@ -21,8 +21,9 @@
                         <th scope="col">Doc Number</th>
                         <th scope="col">Behalf of</th>
                         <th scope="col">Service</th>
+                        <th scope="col">Note</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Date Created</th>
+                        <th scope="col">Date Assign</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -33,22 +34,24 @@
                         $sdoc_id = $s['doc_id'];
                         $sbehalf = $s['behalf_of'];
                         $sservice = $s['name'];
+                        $snote = $s['note'];
                         $sstatus = $s['status'];
-                        $scdate = date("d-m-Y", $s['date_created']);
+                        $sadate = date("d-m-Y", $s['date_assign']);
                     ?>
                         <tr>
                             <th scope="row"><?= $i ?></th>
                             <td><?= $sdoc_id ?></td>
                             <td><?= $sbehalf ?></td>
                             <td><?= $sservice ?></td>
+                            <td><a href="" class="badge badge-info" data-toggle="modal" data-target="#noteModal">View</a></td>
                             <td><?php if ($sstatus == 'draft') echo 'Draft';
                                 else if ($sstatus == 'to_samsat') echo 'Process to Samsat';
-                                else if ($sstatus == 'from_samsat') echo 'Checking from Samsat';
-                                else if ($sstatus == 'to_bfi_branch') echo 'Process to BFI';
-                                else echo 'Done';
+                                // else if ($sstatus == 'from_samsat') echo 'Checking from Samsat';
+                                // else if ($sstatus == 'to_bfi_branch') echo 'Process to BFI';
+                                else echo 'Done to BFI';
                                 ?>
                             </td>
-                            <td><?= $scdate ?></td>
+                            <td><?= $sadate ?></td>
                             <td>
                                 <a href="<?= base_url('document/detailstnk/') . $sid ?>" class="badge badge-warning"> Detail</a>
                                 <a href="<?= base_url('document/editstnk/') . $sid ?>" class="badge badge-primary"> Edit</a>
@@ -87,6 +90,32 @@
                         <input type="hidden" name="id" value="<?= $sid; ?>">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
+
+<!-- Note Modal -->
+<?php foreach ($stnks as $s) :
+    $snote = $s['note'];
+?>
+    <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="noteModalLabel">Note</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><?= $snote ?></p>
+                </div>
+                <form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>

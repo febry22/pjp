@@ -17,18 +17,22 @@
                         <div class="card-header text-white bg-warning">Document status</div>
                         <div class="card-body">
                             <div class="form-row">
-                                <div class="form-group col-lg-8 col-md-8">
+                                <div class="form-group col-lg-4 col-md-4">
                                     <label for="doc_id">Document ID</label>
                                     <input type="text" class="form-control" id="doc_id" name="doc_id" value="<?= $stnk['doc_id'] ?>" />
+                                </div>
+                                <div class="form-group col-lg-4 col-md-4">
+                                    <label for="date_assign">Date Assign</label>
+                                    <input type="text" class="form-control" name="date_assign" value="<?= date("d-m-Y", $stnk['date_assign']) ?>" />
                                 </div>
                                 <div class="form-group col-lg-4 col-md-4">
                                     <label for="status">Status</label>
                                     <select name="status" id="status" class="form-control">
                                         <option value="draft" <?php if ($stnk['status'] == 'draft') echo 'selected' ?>>Draft</option>
                                         <option value="to_samsat" <?php if ($stnk['status'] == 'to_samsat') echo 'selected' ?>>Process to Samsat</option>
-                                        <option value="from_samsat" <?php if ($stnk['status'] == 'from_samsat') echo 'selected' ?>>Checking from Samsat</option>
-                                        <option value="to_bfi_branch" <?php if ($stnk['status'] == 'to_bfi_branch') echo 'selected' ?>>Process to BFI</option>
-                                        <option value="done" <?php if ($stnk['status'] == 'done') echo 'selected' ?>>Done</option>
+                                        <!-- <option value="from_samsat" <?php if ($stnk['status'] == 'from_samsat') echo 'selected' ?>>Checking from Samsat</option>
+                                        <option value="to_bfi_branch" <?php if ($stnk['status'] == 'to_bfi_branch') echo 'selected' ?>>Process to BFI</option> -->
+                                        <option value="done" <?php if ($stnk['status'] == 'done') echo 'selected' ?>>Done to BFI</option>
                                     </select>
                                 </div>
                             </div>

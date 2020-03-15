@@ -45,6 +45,9 @@
 <script src="<?= base_url('assets/'); ?>vendor/bootstrap-select-1.13.9/dist/js/bootstrap-select.min.js"></script>
 <script src="<?= base_url('assets/'); ?>vendor/bootstrap-select-1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 
+<!-- Datepicker -->
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
 <!-- Core plugin JavaScript-->
 <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -128,7 +131,8 @@
                 }
                 $('#service-id-stnk').html(html);
 
-                serv_id = $('#service-id-stnk').val();
+                var serv_id = $('#service-id-stnk').val();
+
                 $.ajax({
                     url: "<?= base_url('master/get_param_by_service/'); ?>",
                     method: "POST",
@@ -149,13 +153,13 @@
                                 html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
                             }
 
-                            _serv_id = serv_id;
-                            _param1 = data[i].param1;
-                            _param2 = data[i].param2;
+                            var _serv_id = serv_id;
+                            var _param1 = data[i].param1;
+                            var _param2 = data[i].param2;
                         }
                         $('#param-stnk').html(html1);
 
-                        category = $('#category-stnk').val();
+                        var category = $('#category-stnk').val();
                         $.ajax({
                             url: "<?= base_url('master/get_fee/'); ?>",
                             method: "POST",
@@ -178,7 +182,6 @@
                 });
             }
         });
-        return false;
 
         $('#service-id-stnk').change(function() {
             var id = $(this).val();
@@ -203,12 +206,12 @@
                         }
                     }
 
-                    _serv_id = id;
-                    _param1 = data[0].param1;
-                    _param2 = data[0].param2;
+                    var _serv_id = id;
+                    var _param1 = data[0].param1;
+                    var _param2 = data[0].param2;
                     $('#param-stnk').html(html1);
 
-                    category = $('#category-stnk').val();
+                    var category = $('#category-stnk').val();
                     $.ajax({
                         url: "<?= base_url('master/get_fee/'); ?>",
                         method: "POST",
@@ -229,8 +232,6 @@
                     });
                 }
             });
-
-            return false;
         });
 
         $('#category-stnk').change(function() {
@@ -253,8 +254,6 @@
                     }
                 }
             });
-
-            return false;
         });
 
         $('#param-stnk').change(function() {
@@ -277,8 +276,6 @@
                     }
                 }
             });
-
-            return false;
         });
     });
 </script>
@@ -303,7 +300,7 @@
                 }
                 $('#service-id-bpkb').html(html);
 
-                serv_id = $('#service-id-bpkb').val();
+                var serv_id = $('#service-id-bpkb').val();
                 $.ajax({
                     url: "<?= base_url('master/get_param_by_service/'); ?>",
                     method: "POST",
@@ -324,13 +321,13 @@
                                 html1 += '<option value=' + data[i].id + '>' + data[i].param1 + ' - ' + data[i].param2 + '</option>';
                             }
 
-                            _serv_id = serv_id;
-                            _param1 = data[i].param1;
-                            _param2 = data[i].param2;
+                            var _serv_id = serv_id;
+                            var _param1 = data[i].param1;
+                            var _param2 = data[i].param2;
                         }
                         $('#param-bpkb').html(html1);
 
-                        category = $('#category-bpkb').val();
+                        var category = $('#category-bpkb').val();
                         $.ajax({
                             url: "<?= base_url('master/get_fee/'); ?>",
                             method: "POST",
@@ -353,7 +350,6 @@
                 });
             }
         });
-        return false;
 
         $('#service-id-bpkb').change(function() {
             var id = $(this).val();
@@ -378,12 +374,12 @@
                         }
                     }
 
-                    _serv_id = id;
-                    _param1 = data[0].param1;
-                    _param2 = data[0].param2;
+                    var _serv_id = id;
+                    var _param1 = data[0].param1;
+                    var _param2 = data[0].param2;
                     $('#param-bpkb').html(html1);
 
-                    category = $('#category-bpkb').val();
+                    var category = $('#category-bpkb').val();
                     $.ajax({
                         url: "<?= base_url('master/get_fee/'); ?>",
                         method: "POST",
@@ -404,8 +400,6 @@
                     });
                 }
             });
-
-            return false;
         });
 
         $('#category-bpkb').change(function() {
@@ -428,8 +422,6 @@
                     }
                 }
             });
-
-            return false;
         });
 
         $('#param-bpkb').change(function() {
@@ -452,8 +444,6 @@
                     }
                 }
             });
-
-            return false;
         });
     });
 </script>
@@ -547,6 +537,14 @@
         }
         return true;
     }
+</script>
+
+<!-- Date Picker -->
+<script>
+    $('#date_assign').datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'dd-mm-yyyy'
+    });
 </script>
 
 </body>

@@ -16,9 +16,13 @@
                 <div class="card-header text-white bg-warning">Document status</div>
                 <div class="card-body">
                     <div class="form-row">
-                        <div class="form-group col-lg-8 col-md-8">
+                        <div class="form-group col-lg-4 col-md-4">
                             <label for="doc_id">Document ID</label>
                             <input type="text" class="form-control" id="doc_id" name="doc_id" value="<?= $bpkb['doc_id'] ?>" readonly />
+                        </div>
+                        <div class="form-group col-lg-4 col-md-4">
+                            <label for="date_assign">Date Assign</label>
+                            <input type="text" class="form-control" id="date_assign" name="date_assign" value="<?= date("d-m-Y", $bpkb['date_assign']) ?>" />
                         </div>
                         <div class="form-group col-lg-4 col-md-4">
                             <label for="status">Status</label>

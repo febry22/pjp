@@ -21,8 +21,9 @@
                         <th scope="col">Doc Number</th>
                         <th scope="col">Behalf of</th>
                         <th scope="col">Service</th>
+                        <th scope="col">Note</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Date Created</th>
+                        <th scope="col">Date Assign</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -33,14 +34,16 @@
                         $bdoc_id = $b['doc_id'];
                         $bbehalf = $b['behalf_of'];
                         $bservice = $b['name'];
+                        $bnote = $b['note'];
                         $bstatus = $b['status'];
-                        $bcdate = date("d-m-Y", $b['date_created']);
+                        $badate = date("d-m-Y", $b['date_assign']);
                     ?>
                         <tr>
                             <th scope="row"><?= $i ?></th>
                             <td><?= $bdoc_id ?></td>
                             <td><?= $bbehalf ?></td>
                             <td><?= $bservice ?></td>
+                            <td><a href="" class="badge badge-info" data-toggle="modal" data-target="#noteModal">View</a></td>
                             <td><?php if ($bstatus == 'draft') echo 'Draft';
                                 else if ($bstatus == 'to_samsat') echo 'Process to Samsat';
                                 else if ($bstatus == 'from_samsat') echo 'Checking from Samsat';
@@ -48,7 +51,7 @@
                                 else echo 'Done';
                                 ?>
                             </td>
-                            <td><?= $bcdate ?></td>
+                            <td><?= $badate ?></td>
                             <td>
                                 <a href="<?= base_url('document/detailbpkb/') . $bid ?>" class="badge badge-warning"> Detail</a>
                                 <a href="<?= base_url('document/editbpkb/') . $bid ?>" class="badge badge-primary"> Edit</a>
@@ -87,6 +90,32 @@
                         <input type="hidden" name="id" value="<?= $bid; ?>">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
+
+<!-- Note Modal -->
+<?php foreach ($bpkbs as $b) :
+    $bnote = $b['note'];
+?>
+    <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="noteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="noteModalLabel">Note</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><?= $bnote ?></p>
+                </div>
+                <form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>

@@ -211,6 +211,7 @@ class Document extends CI_Controller
                 'created_by' => $user['id'],
                 'company_id' => $user['company_id'],
                 'partner_id' => $user['partner_id'],
+                'date_assign' => time(),
                 'date_created' => time(),
                 'modified_by' => $user['id'],
                 'date_modified' => time(),
@@ -256,6 +257,10 @@ class Document extends CI_Controller
             $this->load->view('document/editstnk', $data);
             $this->load->view('templates/footer');
         } else {
+            // echo $this->input->post('date_assign');
+            // echo strtotime($this->input->post('date_assign'));
+            // die();
+
             $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
             // Upload img config
@@ -489,6 +494,7 @@ class Document extends CI_Controller
                 'add_cost' => $add_cost,
                 'desc_cost' => $this->input->post('desc_cost'),
                 'total' => $total,
+                'date_assign' => strtotime($this->input->post('date_assign')),
                 'modified_by' => $user['id'],
                 'date_modified' => time(),
                 'status' => $this->input->post('status')
@@ -717,6 +723,7 @@ class Document extends CI_Controller
                 'created_by' => $user['id'],
                 'company_id' => $user['company_id'],
                 'partner_id' => $user['partner_id'],
+                'date_assign' => time(),
                 'date_created' => time(),
                 'modified_by' => $user['id'],
                 'date_modified' => time(),
@@ -995,6 +1002,7 @@ class Document extends CI_Controller
                 'add_cost' => $add_cost,
                 'desc_cost' => $this->input->post('desc_cost'),
                 'total' => $total,
+                'date_assign' => strtotime($this->input->post('date_assign')),
                 'modified_by' => $user['id'],
                 'date_modified' => time(),
                 'status' => $this->input->post('status')
