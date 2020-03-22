@@ -218,7 +218,22 @@ class Document extends CI_Controller
                 'delete_status' => 0
             ];
 
-            $this->db->insert('doc_stnk', $data);
+            $doc = $this->db->insert('doc_stnk', $data);
+            $insertId = $this->db->insert_id();
+
+            // get new inserted data
+            $this->db->from('doc_stnk');
+            $this->db->where('id', $insertId);
+            $new_doc = $this->db->get()->row_array();
+
+            $log = [
+                'doc_id' => $new_doc['id'],
+                'status' => $new_doc['status'],
+                'created_at' => $new_doc['date_created'],
+                'created_by' => $new_doc['created_by']
+            ];
+
+            $this->db->insert('doc_stnk_status_log', $log);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 New document added!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('document');
@@ -257,9 +272,7 @@ class Document extends CI_Controller
             $this->load->view('document/editstnk', $data);
             $this->load->view('templates/footer');
         } else {
-            // echo $this->input->post('date_assign');
-            // echo strtotime($this->input->post('date_assign'));
-            // die();
+            $old_data = $this->db->get_where('doc_stnk', ['id' => $id])->row_array();
 
             $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
@@ -483,6 +496,17 @@ class Document extends CI_Controller
                 }
             }
 
+            if($old_data['status'] != $this->input->post('status')){
+                $log = [
+                    'doc_id' => $id,
+                    'status' => $this->input->post('status'),
+                    'created_at' => time(),
+                    'created_by' => $user['id']
+                ];
+    
+                $this->db->insert('doc_stnk_status_log', $log);
+            }
+           
             $data = [
                 'behalf_of' => $this->input->post('behalf_of'),
                 'no_bpkb' => $this->input->post('no_bpkb'),
@@ -730,7 +754,22 @@ class Document extends CI_Controller
                 'delete_status' => 0
             ];
 
-            $this->db->insert('doc_bpkb', $data);
+            $doc = $this->db->insert('doc_bpkb', $data);
+            $insertId = $this->db->insert_id();
+
+            // get new inserted data
+            $this->db->from('doc_bpkb');
+            $this->db->where('id', $insertId);
+            $new_doc = $this->db->get()->row_array();
+
+            $log = [
+                'doc_id' => $new_doc['id'],
+                'status' => $new_doc['status'],
+                'created_at' => $new_doc['date_created'],
+                'created_by' => $new_doc['created_by']
+            ];
+
+            $this->db->insert('doc_bpkb_status_log', $log);
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 New document added!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('document/bpkb');
@@ -769,6 +808,8 @@ class Document extends CI_Controller
             $this->load->view('document/editbpkb', $data);
             $this->load->view('templates/footer');
         } else {
+            $old_data = $this->db->get_where('doc_bpkb', ['id' => $id])->row_array();
+
             $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
             // Upload img config
@@ -989,6 +1030,17 @@ class Document extends CI_Controller
                         . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
                     redirect('document/editbpkb/' . $id);
                 }
+            }
+
+            if($old_data['status'] != $this->input->post('status')){
+                $log = [
+                    'doc_id' => $id,
+                    'status' => $this->input->post('status'),
+                    'created_at' => time(),
+                    'created_by' => $user['id']
+                ];
+    
+                $this->db->insert('doc_bpkb_status_log', $log);
             }
 
             $data = [

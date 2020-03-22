@@ -29,9 +29,9 @@
                             <select name="status" id="status" class="form-control">
                                 <option value="draft" <?php if ($bpkb['status'] == 'draft') echo 'selected' ?>>Draft</option>
                                 <option value="to_samsat" <?php if ($bpkb['status'] == 'to_samsat') echo 'selected' ?>>Process to Samsat</option>
-                                <option value="from_samsat" <?php if ($bpkb['status'] == 'from_samsat') echo 'selected' ?>>Checking from Samsat</option>
-                                <option value="to_bfi_branch" <?php if ($bpkb['status'] == 'to_bfi_branch') echo 'selected' ?>>Process to BFI</option>
-                                <option value="done" <?php if ($bpkb['status'] == 'done') echo 'selected' ?>>Done</option>
+                                <option value="from_samsat" <?php if ($bpkb['status'] == 'processing_bpkb') echo 'selected' ?>>Processing BPKB</option>
+                                <option value="to_bfi_branch" <?php if ($bpkb['status'] == 'checking_bpkb') echo 'selected' ?>>Checking BPKB</option>
+                                <option value="done" <?php if ($bpkb['status'] == 'done') echo 'selected' ?>>Done to BFI</option>
                             </select>
                         </div>
                     </div>

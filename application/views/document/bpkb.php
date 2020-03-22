@@ -46,9 +46,9 @@
                             <td><a href="" class="badge badge-info" data-toggle="modal" data-target="#noteModal">View</a></td>
                             <td><?php if ($bstatus == 'draft') echo 'Draft';
                                 else if ($bstatus == 'to_samsat') echo 'Process to Samsat';
-                                else if ($bstatus == 'from_samsat') echo 'Checking from Samsat';
-                                else if ($bstatus == 'to_bfi_branch') echo 'Process to BFI';
-                                else echo 'Done';
+                                else if ($bstatus == 'processing_bpkb') echo 'Processing BPKB';
+                                else if ($bstatus == 'checking_bpkb') echo 'Checking BPKB';
+                                else echo 'Done to BFI';
                                 ?>
                             </td>
                             <td><?= $badate ?></td>
