@@ -10,6 +10,7 @@ class Admin extends CI_Controller
 
         $this->load->model('Admin_model');
         $this->load->model('Master_model');
+        $this->load->model('Config_model');
     }
 
     public function index()
@@ -149,6 +150,66 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 User updated!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
             redirect('admin/index');
+        }
+    }
+
+    public function config()
+    {
+        $data['title'] = 'Configuration';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['config'] = $this->Config_model->getConfig();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/config', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function editconfig($id)
+    {   
+        $data['title'] = 'Configuration';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['config'] = $this->Config_model->getConfig();
+
+        $this->form_validation->set_rules('admin_skp', 'Admin SKP', 'required');
+        $this->form_validation->set_rules('acc_bpkb_leasing', 'ACC BPKB Leasing', 'required');
+        $this->form_validation->set_rules('denda_jr_motor', 'Denda Jasa Raharja (Motor)', 'required');
+        $this->form_validation->set_rules('denda_jr_mobil', 'Denda Jasa Raharja (Mobil)', 'required');
+        $this->form_validation->set_rules('js_motor', 'Jasa Raharja (Motor)', 'required');
+        $this->form_validation->set_rules('js_mobil', 'Jasa Raharja (Mobil)', 'required');
+        $this->form_validation->set_rules('adm_stnk_motor', 'Administrasi STNK (Motor)', 'required');
+        $this->form_validation->set_rules('adm_stnk_mobil', 'Administrasi STNK (Mobil)', 'required');
+        $this->form_validation->set_rules('tnkb_motor', 'TNKB Motor', 'required');
+        $this->form_validation->set_rules('tnkb_mobil', 'TNKB Mobil', 'required');
+
+        if ($this->form_validation->run() == false) {
+            // var_dump($this->input->post('admin_skp'));
+            // die();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('admin/editconfig', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'admin_skp' => $this->input->post('admin_skp'),
+                'acc_bpkb_leasing' => $this->input->post('acc_bpkb_leasing'),
+                'denda_jr_motor' => $this->input->post('denda_jr_motor'),
+                'denda_jr_mobil' => $this->input->post('denda_jr_mobil'),
+                'js_motor' => $this->input->post('js_motor'),
+                'js_mobil' => $this->input->post('js_mobil'),
+                'adm_stnk_motor' => $this->input->post('adm_stnk_motor'),
+                'adm_stnk_mobil' => $this->input->post('adm_stnk_mobil'),
+                'tnkb_motor' => $this->input->post('tnkb_motor'),
+                'tnkb_mobil' => $this->input->post('tnkb_mobil')
+            ];
+
+            $this->Config_model->editConfig($id, $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                Config updated!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+            redirect('admin/config');
         }
     }
 
