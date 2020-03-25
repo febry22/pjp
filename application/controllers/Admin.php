@@ -184,9 +184,6 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('tnkb_mobil', 'TNKB Mobil', 'required');
 
         if ($this->form_validation->run() == false) {
-            // var_dump($this->input->post('admin_skp'));
-            // die();
-
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
