@@ -132,7 +132,7 @@
                 $('#service-id-stnk').html(html);
 
                 var serv_id = $('#service-id-stnk').val();
-
+                console.log('serv_id ',serv_id)
                 $.ajax({
                     url: "<?= base_url('master/get_param_by_service/'); ?>",
                     method: "POST",
@@ -144,7 +144,7 @@
                     success: function(data) {
                         var html1 = '';
                         var i;
-                        for (i = 0; i < data.length; i++) {
+                        for (i = 0; i < 1; i++) {
                             if (data[i].param1 == '-') {
                                 html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
                             } else if (data[i].param2 == '-') {
@@ -196,7 +196,7 @@
                 success: function(data) {
                     var html1 = '';
                     var i;
-                    for (i = 0; i < data.length; i++) {
+                    for (i = 0; i < 1; i++) {
                         if (data[i].param1 == '-') {
                             html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
                         } else if (data[i].param2 == '-') {
@@ -312,7 +312,7 @@
                     success: function(data) {
                         var html1 = '';
                         var i;
-                        for (i = 0; i < data.length; i++) {
+                        for (i = 0; i < 1; i++) {
                             if (data[i].param1 == '-') {
                                 html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
                             } else if (data[i].param2 == '-') {
@@ -364,7 +364,7 @@
                 success: function(data) {
                     var html1 = '';
                     var i;
-                    for (i = 0; i < data.length; i++) {
+                    for (i = 0; i < 1; i++) {
                         if (data[i].param1 == '-') {
                             html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
                         } else if (data[i].param2 == '-') {
@@ -542,6 +542,11 @@
 <!-- Date Picker -->
 <script>
     $('#date_assign').datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'dd-mm-yyyy'
+    });
+
+    $('#jatuh_tempo').datepicker({
         uiLibrary: 'bootstrap4',
         format: 'dd-mm-yyyy'
     });
