@@ -23,7 +23,7 @@ class Pdf
 
         // render as PDF
         $dompdf->render();
-        ob_clean();
+        ob_clean(); 
         $dompdf->stream($this->filename, array("Attachment" => false));
     }
 }

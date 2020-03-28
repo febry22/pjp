@@ -12,7 +12,7 @@
 
             <?= $this->session->flashdata('message'); ?>
 
-            <form id="calcForm" action="<?= base_url() . 'calculator/printpdfstnk' ?>" method="post">
+            <form id="calcForm" action="<?= base_url() . 'calculator/printpdfstnk' ?>" method="post" target="_blank">
                 <div class="card">
                     <div class="card-header text-white bg-secondary">Service detail</div>
                     <div class="card-body">

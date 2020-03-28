@@ -2,8 +2,8 @@
 use Dompdf\Dompdf;
 require_once 'autoload.inc.php';
 
-// function pdf_create($html, $xfilename, $stream=true, $papersize = 'letter', $orientation = 'portrait')
-// {
+function pdf_create($html, $xfilename, $stream=true, $papersize = 'letter', $orientation = 'portrait')
+{
 
 	// Reference the Dompdf namespace
 	
@@ -23,7 +23,7 @@ require_once 'autoload.inc.php';
 				<td>data</td>
 			</tr>
 		</tbody>
-	</table>"
+	</table>";
 	$dompdf->loadHtml('<h1>Welcome to CodexWorld.com</h1>');
 
 	// (Optional) Setup the paper size and orientation
@@ -35,4 +35,4 @@ require_once 'autoload.inc.php';
     $dompdf->stream("laporan.pdf", array("Attachment" => FALSE));
 
 
-// }
+}
