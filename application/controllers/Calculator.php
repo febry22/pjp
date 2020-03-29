@@ -108,34 +108,44 @@ class Calculator extends CI_Controller
 
             // denda
             $pajak_ar = [];
-            if($years > 0){
-                if($months > 0 || $days > 0){
-                    // denda jatuh tempo
-                    $multiplier = ($years*12) + $months;
-                    $d_jatuh_tempo = ($this->input->post('last_pajak')*$multiplier*2)/100;
-
-                    // denda jasa raharja
-                    $d_jr = $denda_jr*$years;
-
-                    // pajak
-                    $date1Unix = strtotime($date1);
-                    if($months > 10){
-                        $year_diff = date("Y", time()) - date("Y", $date1Unix);
-
-                        $y1 = date("Y", $date1Unix);
-                        for ($i = 0; $i <= $year_diff; $i++) {
-                            $y2 = $y1 + 1;
-                            array_push($pajak_ar, $y1.' - '.$y2);
-                            $y1 = $y2;
+            if($date1 < $date2){
+                $date1Unix = strtotime($date1);
+                if($years > 0){
+                    if($months > 0 || $days > 0){
+                        // denda jatuh tempo
+                        $multiplier = ($years*12) + $months;
+                        $d_jatuh_tempo = ($this->input->post('last_pajak')*$multiplier*2)/100;
+    
+                        // denda jasa raharja
+                        $d_jr = $denda_jr*$years;
+    
+                        // pajak
+                        if($months > 10){
+                            $year_diff = date("Y", time()) - date("Y", $date1Unix);
+    
+                            $y1 = date("Y", $date1Unix);
+                            for ($i = 0; $i <= $year_diff; $i++) {
+                                $y2 = $y1 + 1;
+                                array_push($pajak_ar, $y1.' - '.$y2);
+                                $y1 = $y2;
+                            }
+                        }
+                        elseif($months <= 10){
+                            $y1 = date("Y", $date1Unix);
+                            for ($i = 0; $i < 2; $i++) {
+                                $y2 = $y1 + 1;
+                                array_push($pajak_ar, $y1.' - '.$y2);
+                                $y1 = $y2;
+                            }
                         }
                     }
-                    elseif($months <= 10){
-                        $y1 = date("Y", $date1Unix);
-                        for ($i = 0; $i < 2; $i++) {
-                            $y2 = $y1 + 1;
-                            array_push($pajak_ar, $y1.' - '.$y2);
-                            $y1 = $y2;
-                        }
+                }
+                else{
+                    $y1 = date("Y", $date1Unix);
+                    for ($i = 0; $i < 1; $i++) {
+                        $y2 = $y1 + 1;
+                        array_push($pajak_ar, $y1.' - '.$y2);
+                        $y1 = $y2;
                     }
                 }
             }

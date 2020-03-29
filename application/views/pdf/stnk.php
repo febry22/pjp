@@ -29,19 +29,14 @@
     <br/>
     <span>Rincian Biaya :</span>
     <table border="0">
-      <tr>
-        <?php 
-          if(stristr($service, '5') === false)
-          {
-            echo '<td>Biaya Jasa</td><td style="text-align:right">Rp '.number_format($total, 2, ',', '.').'</td>';
+      <?php 
+        foreach ($pajak_ar as $pj) {
+           echo '<tr>
+              <td>Pajak '.$pj.'</td>
+              <td style="text-align:right">Rp '.number_format($last_pajak, 2, ',', '.').'</td>
+            </tr>';
           }
-          else
-          {
-            $total = $total - 150000;
-            echo '<td>Biaya Jasa</td><td style="text-align:right">Rp '.number_format($total, 2, ',', '.').'</td>';
-          }
-        ?>
-      </tr>
+      ?>  
       <?php 
         if(stristr($service, '5') === false){
           
@@ -58,14 +53,7 @@
         <td>ACC BPKB Leasing</td>
         <td style="text-align:right">Rp <?= number_format($acc_bpkb_leasing, 2, ',', '.') ?></td>
       </tr>
-      <?php 
-        foreach ($pajak_ar as $pj) {
-           echo '<tr>
-              <td>Pajak '.$pj.'</td>
-              <td style="text-align:right">Rp '.number_format($last_pajak, 2, ',', '.').'</td>
-            </tr>';
-          }
-      ?>  
+      
       <?php 
         if($b_adm_skp > 0){
           echo ' <tr>
@@ -101,6 +89,19 @@
       <tr>
         <td style="padding-right: 400px">TNKB</td>
         <td style="text-align:right">Rp <?= number_format($tnkb, 2, ',', '.') ?></td>
+      </tr>
+      <tr>
+        <?php 
+          if(stristr($service, '5') === false)
+          {
+            echo '<td>Biaya Jasa</td><td style="text-align:right">Rp '.number_format($total, 2, ',', '.').'</td>';
+          }
+          else
+          {
+            $total = $total - 150000;
+            echo '<td>Biaya Jasa</td><td style="text-align:right">Rp '.number_format($total, 2, ',', '.').'</td>';
+          }
+        ?>
       </tr>
       <tr>
         <td><hr/></td>
