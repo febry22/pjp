@@ -12,7 +12,7 @@
     <title>Pdf</title>
 
     <style>
-      h2, span, td, p{
+      h2, h3, span, td, p{
         font-family: 'Poppins', sans-serif;
       }
     </style>
@@ -29,11 +29,15 @@
     <br/>
     <span>Rincian Biaya :</span>
     <table border="0">
+      <tr>
+        <td style="padding-right: 400px"></td>
+        <td style="text-align:right"></td>
+      </tr>
       <?php 
         foreach ($pajak_ar as $pj) {
            echo '<tr>
               <td>Pajak '.$pj.'</td>
-              <td style="text-align:right">Rp '.number_format($last_pajak, 2, ',', '.').'</td>
+              <td style="text-align:right">Rp '.number_format($last_pajak_, 2, ',', '.').'</td>
             </tr>';
           }
       ?>  
@@ -82,14 +86,22 @@
         <td>Jasa Raharja</td>
         <td style="text-align:right">Rp <?= number_format($jr, 2, ',', '.') ?></td>
       </tr>
-      <tr>
-        <td>Administrasi STNK</td>
-        <td style="text-align:right">Rp <?= number_format($adm_stnk, 2, ',', '.') ?></td>
-      </tr>
-      <tr>
-        <td style="padding-right: 400px">TNKB</td>
-        <td style="text-align:right">Rp <?= number_format($tnkb, 2, ',', '.') ?></td>
-      </tr>
+      <?php 
+        if($adm_stnk > 0){
+          echo '<tr>
+            <td>Administrasi STNK</td>
+            <td style="text-align:right">Rp '.number_format($adm_stnk, 2, ',', '.').'</td>
+          </tr>';
+        }
+      ?>
+      <?php 
+        if($tnkb > 0){
+          echo '<tr>
+            <td>TNKB</td>
+            <td style="text-align:right">Rp '.number_format($tnkb, 2, ',', '.').'</td>
+          </tr>';
+        }
+      ?>
       <tr>
         <?php 
           if(stristr($service, '5') === false)
@@ -108,10 +120,14 @@
         <td><hr/></td>
       </tr>
       <tr>
-        <td>Total</td>
-        <td style="text-align:right">Rp <?= number_format($total, 2, ',', '.') ?></td>
+        <td><h3>Total</h3></td>
+        <td style="text-align:right"><h3>Rp <?= number_format($total_all, 2, ',', '.') ?></h3></td>
       </tr>
     </table>
+
+    <br/>
+    <br/>
+    <p style="font-size:8px">*Biaya terlampir diatas hanya sebagai estimasi sementara. Jika ada biaya tambahan, akan dikonfirmasi sebelumnya.</p>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

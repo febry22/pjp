@@ -58,12 +58,6 @@
                 <div class="card mt-3">
                     <div class="card-header text-white bg-primary">Other detail</div>
                     <div class="card-body">
-                        <div class="form-row" style="padding-left:20px">
-                            <div class="form-check col-lg-5 col-md-5">
-                                <input type="checkbox" class="form-check-input" id="admin_skp" name="admin_skp">
-                                <label class="form-check-label" for="admin_skp">Admin SKP</label>
-                            </div>      
-                        </div>
                         <div class="form-row mt-2">
                             <div class="form-group col-lg-6 col-md-6">
                                 <label for="nopol">Nomor Polisi</label>
@@ -76,7 +70,17 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-lg-6 col-md-6">
-                                <label for="jatuh_tempo">Jatuh Tempo</label>
+                                <label for="fullname">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="fullname" name="fullname">
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6">
+                                <label for="phone">Nomor Telepon/HP</label>
+                                <input type="text" class="form-control" id="phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-lg-6 col-md-6">
+                                <label for="jatuh_tempo">Jatuh Tempo Pajak</label>
                                 <input type="text" class="form-control" id="jatuh_tempo" name="jatuh_tempo">
                             </div>
                         </div>
@@ -91,16 +95,20 @@
                             <label class="form-check-label" for="up0">None</label>
                         </div>
                         <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="up_fee" id="up5" value="5">
+                            <label class="form-check-label" for="up5">5%</label>
+                        </div>
+                        <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="up_fee" id="up10" value="10">
                             <label class="form-check-label" for="up10">10%</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="up_fee" id="up20" value="20">
-                            <label class="form-check-label" for="up20">20%</label>
+                            <input class="form-check-input" type="radio" name="up_fee" id="up15" value="15">
+                            <label class="form-check-label" for="up15">15%</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="up_fee" id="up30" value="30">
-                            <label class="form-check-label" for="up30">30%</label>
+                            <input class="form-check-input" type="radio" name="up_fee" id="up20" value="20">
+                            <label class="form-check-label" for="up20">20%</label>
                         </div>
                     </div>
                 </div>

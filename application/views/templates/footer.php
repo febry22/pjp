@@ -132,7 +132,6 @@
                 $('#service-id-stnk').html(html);
 
                 var serv_id = $('#service-id-stnk').val();
-                console.log('serv_id ',serv_id)
                 $.ajax({
                     url: "<?= base_url('master/get_param_by_service/'); ?>",
                     method: "POST",
