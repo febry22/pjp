@@ -83,6 +83,10 @@
                                 <label for="jatuh_tempo">Jatuh Tempo Pajak</label>
                                 <input type="text" class="form-control" id="jatuh_tempo" name="jatuh_tempo">
                             </div>
+                            <div class="form-group col-lg-6 col-md-6">
+                                <label for="jatuh_tempo_stnk">Jatuh Tempo STNK (Year)</label>
+                                <input type="number" class="form-control" id="jatuh_tempo_stnk" name="jatuh_tempo_stnk">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -115,7 +119,7 @@
 
                 <div class="form-group row mt-3">
                     <div class="col-sm-10">
-                        <button type="button" data-toggle="modal" data-target="#saveModal" class="btn btn-primary">Compile</button>
+                        <button type="button" data-toggle="modal" data-target="#saveModal" class="btn btn-primary">Calculate</button>
                     </div>
                 </div>
             </form>
@@ -131,12 +135,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="saveModalLabel">Compile Document</h5>
+                <h5 class="modal-title" id="saveModalLabel">Calculate Document</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Compile all data?</div>
+            <div class="modal-body">Calculate all data?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <button type="submit" form="calcForm" class="btn btn-primary" href="">Yes</button>

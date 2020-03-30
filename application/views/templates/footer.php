@@ -141,9 +141,10 @@
                     async: true,
                     dataType: 'json',
                     success: function(data) {
+                        console.log(data);
                         var html1 = '';
                         var i;
-                        for (i = 0; i < 1; i++) {
+                        for (i = 0; i < data.length; i++) {
                             if (data[i].param1 == '-') {
                                 html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
                             } else if (data[i].param2 == '-') {
@@ -195,7 +196,7 @@
                 success: function(data) {
                     var html1 = '';
                     var i;
-                    for (i = 0; i < 1; i++) {
+                    for (i = 0; i < data.length; i++) {
                         if (data[i].param1 == '-') {
                             html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
                         } else if (data[i].param2 == '-') {
@@ -311,7 +312,7 @@
                     success: function(data) {
                         var html1 = '';
                         var i;
-                        for (i = 0; i < 1; i++) {
+                        for (i = 0; i < data.length; i++) {
                             if (data[i].param1 == '-') {
                                 html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
                             } else if (data[i].param2 == '-') {
@@ -363,7 +364,7 @@
                 success: function(data) {
                     var html1 = '';
                     var i;
-                    for (i = 0; i < 1; i++) {
+                    for (i = 0; i < data.length; i++) {
                         if (data[i].param1 == '-') {
                             html1 += '<option value=' + data[i].id + '>' + '-' + '</option>';
                         } else if (data[i].param2 == '-') {
@@ -542,13 +543,24 @@
 <script>
     $('#date_assign').datepicker({
         uiLibrary: 'bootstrap4',
-        format: 'dd-mm-yyyy'
+        format: 'dd-mm-yyyy',
+        modal: true, 
+        header: true, 
+        footer: true
     });
 
     $('#jatuh_tempo').datepicker({
         uiLibrary: 'bootstrap4',
-        format: 'dd-mm-yyyy'
+        format: 'dd-mm-yyyy',
+        modal: true, 
+        header: true, 
+        footer: true
     });
+</script>
+
+<!-- Cek pajak 5 tahun -->
+<script>
+
 </script>
 
 </body>

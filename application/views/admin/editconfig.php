@@ -106,6 +106,17 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="denda_jatuh_tempo">Denda Jatuh Tempo (%)</label>
+                            <input type="text" class="form-control" id="denda_jatuh_tempo" name="denda_jatuh_tempo" value="<?= $config['denda_jatuh_tempo'] ?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="form-group row mt-2">

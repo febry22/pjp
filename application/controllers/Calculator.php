@@ -32,12 +32,10 @@ class Calculator extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['services'] = $this->Master_model->getAllService();
 
-        // print_r($data['user']['id']);
-        // die();
-
         $this->form_validation->set_rules('nopol', 'Nomor Polisi', 'required');
         $this->form_validation->set_rules('last_pajak', 'Pajak Tahun Lalu', 'required');
         $this->form_validation->set_rules('jatuh_tempo', 'Jatuh Tempo', 'required');
+        $this->form_validation->set_rules('jatuh_tempo_stnk', 'Jatuh Tempo STNK', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -80,6 +78,21 @@ class Calculator extends CI_Controller
             $last_pajak_ = $this->input->post('last_pajak');
             $user_id = $data['user']['id'];
 
+            $jt_stnk = strtotime(date("m", strtotime($date1)).'/'.date("d", strtotime($date1)).'/'.$this->input->post('jatuh_tempo_stnk'));
+            $jatuh_tempo_stnk = date('d-m-Y',$jt_stnk);
+
+            // jika lebih 5 tahun
+            $date3 = $jatuh_tempo_stnk; 
+            $years2 = date("Y", strtotime($date3)) - date("Y", strtotime($date2));
+            $months2 = date("m", strtotime($date3)) - date("m", strtotime($date2));
+
+            if($service['name'] == 'Perpanjangan Tahunan'){
+                if($years2 < 0 || $months2 < 2){
+                    $this->session->set_flashdata('message', 'Service name harus Perpanjangan 5 Tahunan');
+                    redirect('/calculator');
+                }
+            }
+
             // biaya jasa raharja, adm stnk, tnkb
             if($this->input->post('category-stnk') == 'car') 
             {   
@@ -105,8 +118,15 @@ class Calculator extends CI_Controller
             }
 
             // up fee
-            if($this->input->post('up_fee') == 10){
-                // $b_adm_skp = $b_adm_skp + (($b_adm_skp*10)/100);
+            if($this->input->post('up_fee') == 5){
+                $d_jatuh_tempo = $d_jatuh_tempo + (($d_jatuh_tempo*5)/100);
+                $b_js = $b_js + (($b_js*5)/100);
+                $d_jr = $d_jr + (($d_jr*5)/100);
+                $b_adm_stnk = $b_adm_stnk + (($b_adm_stnk*5)/100);
+                $b_tnkb = $b_tnkb + (($b_tnkb*5)/100);
+                $last_pajak_ = $last_pajak_ + (($last_pajak_*5)/100);
+            }
+            elseif($this->input->post('up_fee') == 10){
                 $d_jatuh_tempo = $d_jatuh_tempo + (($d_jatuh_tempo*10)/100);
                 $b_js = $b_js + (($b_js*10)/100);
                 $d_jr = $d_jr + (($d_jr*10)/100);
@@ -114,8 +134,15 @@ class Calculator extends CI_Controller
                 $b_tnkb = $b_tnkb + (($b_tnkb*10)/100);
                 $last_pajak_ = $last_pajak_ + (($last_pajak_*10)/100);
             }
+            elseif($this->input->post('up_fee') == 15){
+                $d_jatuh_tempo = $d_jatuh_tempo + (($d_jatuh_tempo*15)/100);
+                $b_js = $b_js + (($b_js*15)/100);
+                $d_jr = $d_jr + (($d_jr*15)/100);
+                $b_adm_stnk = $b_adm_stnk + (($b_adm_stnk*15)/100);
+                $b_tnkb = $b_tnkb + (($b_tnkb*15)/100);
+                $last_pajak_ = $last_pajak_ + (($last_pajak_*15)/100);
+            }
             elseif($this->input->post('up_fee') == 20){
-                // $b_adm_skp = $b_adm_skp + (($b_adm_skp*20)/100);
                 $d_jatuh_tempo = $d_jatuh_tempo + (($d_jatuh_tempo*20)/100);
                 $b_js = $b_js + (($b_js*20)/100);
                 $d_jr = $d_jr + (($d_jr*20)/100);
@@ -123,17 +150,7 @@ class Calculator extends CI_Controller
                 $b_tnkb = $b_tnkb + (($b_tnkb*20)/100);
                 $last_pajak_ = $last_pajak_ + (($last_pajak_*20)/100);
             }
-            elseif($this->input->post('up_fee') == 30){
-                // $b_adm_skp = $b_adm_skp + (($b_adm_skp*30)/100);
-                $d_jatuh_tempo = $d_jatuh_tempo + (($d_jatuh_tempo*30)/100);
-                $b_js = $b_js + (($b_js*30)/100);
-                $d_jr = $d_jr + (($d_jr*30)/100);
-                $b_adm_stnk = $b_adm_stnk + (($b_adm_stnk*30)/100);
-                $b_tnkb = $b_tnkb + (($b_tnkb*30)/100);
-                $last_pajak_ = $last_pajak_ + (($last_pajak_*30)/100);
-            }
             elseif($this->input->post('up_fee') == 0){
-                // $b_adm_skp = $b_adm_skp;
                 $d_jatuh_tempo = $d_jatuh_tempo;
                 $b_js = $b_js;
                 $d_jr = $d_jr;
@@ -143,7 +160,7 @@ class Calculator extends CI_Controller
             }
 
             // denda
-            $jr = $b_js;
+            $jr = 0;
             $pajak_ar = [];
             $date1Unix = strtotime($date1);
             if(strtotime($date1) < strtotime($date2)){
@@ -154,41 +171,39 @@ class Calculator extends CI_Controller
 
                 if($years > 0){
                     if($months > 0 || $days > 0){
-                        // echo 'years = '.$years.' months = '.$months.' days = '.$days;
-                        // die();
                         // denda jatuh tempo
                         $multiplier = ($years*12) + $months;
-                        $d_jatuh_tempo = ($last_pajak_*$multiplier*2)/100;
-    
-                        // denda jasa raharja
-                        $d_jr = $denda_jr*$years;
-                        $jr = $b_js*$years;
-    
+                        $d_jatuh_tempo = ($last_pajak_*$multiplier*$config['denda_jatuh_tempo'])/100;
+                        
                         // pajak
                         if($months > 10){
-                            // denda jasa raharja
-                            $d_jr =  $d_jr + $denda_jr;
-                            $jr = $jr + $b_js;
-
-                            $year_diff = date("Y", time()) - date("Y", $date1Unix) + 1;
+                            $year_diff = $years + 1;
     
                             $y1 = date("Y", $date1Unix);
                             for ($i = 0; $i <= $year_diff; $i++) {
                                 $y2 = $y1 + 1;
                                 array_push($pajak_ar, $y1.' - '.$y2);
                                 $total_all = $total_all + $last_pajak_;
+
+                                // denda jasa raharja
+                                $d_jr =  $d_jr + $denda_jr;
+                                $jr = $jr + $b_js;
 
                                 $y1 = $y2;
                             }
                         }
                         elseif($months <= 10){
-                            $year_diff = date("Y", time()) - date("Y", $date1Unix);
-    
+                            $year_diff = $years;
+
                             $y1 = date("Y", $date1Unix);
                             for ($i = 0; $i <= $year_diff; $i++) {
                                 $y2 = $y1 + 1;
                                 array_push($pajak_ar, $y1.' - '.$y2);
                                 $total_all = $total_all + $last_pajak_;
+
+                                // denda jasa raharja
+                                $d_jr =  $d_jr + $denda_jr;
+                                $jr = $jr + $b_js;
 
                                 $y1 = $y2;
                             }
@@ -197,7 +212,7 @@ class Calculator extends CI_Controller
                 }
                 else{
                     // denda jatuh tempo
-                    $d_jatuh_tempo = ($last_pajak_*$months*2)/100;
+                    $d_jatuh_tempo = ($last_pajak_*$months*$config['denda_jatuh_tempo'])/100;
 
                     // denda jasa raharja
                     $d_jr = $denda_jr*1;
@@ -210,17 +225,38 @@ class Calculator extends CI_Controller
                 }
             }
             else {
+                // jasa raharja
+                $jr = $b_js;
+
                 $y2 = date("Y", $date1Unix);
                 $y1 = $y2 - 1;
                 array_push($pajak_ar, $y1.' - '.$y2);
                 $total_all = $total_all + $last_pajak_;
             }
+            
+            // up fee
+            if($this->input->post('up_fee') == 5){
+                $d_jatuh_tempo = $d_jatuh_tempo + (($d_jatuh_tempo*5)/100);
+            }
+            elseif($this->input->post('up_fee') == 10){
+                $d_jatuh_tempo = $d_jatuh_tempo + (($d_jatuh_tempo*10)/100);
+            }
+            elseif($this->input->post('up_fee') == 15){
+                $d_jatuh_tempo = $d_jatuh_tempo + (($d_jatuh_tempo*15)/100);
+            }
+            elseif($this->input->post('up_fee') == 20){
+                $d_jatuh_tempo = $d_jatuh_tempo + (($d_jatuh_tempo*20)/100);
+            }
+            elseif($this->input->post('up_fee') == 0){
+                $d_jatuh_tempo = $d_jatuh_tempo;
+            }
 
             // biaya admin skp
             if(count($pajak_ar) > 1) $b_adm_skp = $config['admin_skp'];
             else $b_adm_skp = 0;
+            
+            $total_all = $total_all + $this->input->post('total') + $b_adm_skp + $acc_bpkb_leasing + $d_jatuh_tempo + $jr + $d_jr + $b_adm_stnk + $b_tnkb;
 
-            $total_all = $total_all + $this->input->post('total') + $b_adm_skp + $acc_bpkb_leasing + $d_jatuh_tempo + $b_js + $d_jr + $b_adm_stnk + $b_tnkb;
             $data = [
                 "years" => $years,
                 "$months" => $months,
@@ -235,12 +271,15 @@ class Calculator extends CI_Controller
                 "last_pajak_" => $last_pajak_,
                 "pajak_ar" => $pajak_ar,
                 "jatuh_tempo" => $this->input->post('jatuh_tempo'),
+                "jatuh_tempo_stnk" => $jatuh_tempo_stnk,
                 "d_jatuh_tempo" => $d_jatuh_tempo,
                 "jr" => $jr,
                 "d_jr" => $d_jr,
                 "adm_stnk" => $b_adm_stnk,
                 "tnkb" => $b_tnkb,
-                "total_all" => $total_all
+                "total_all" => $total_all,
+                'fullname' => $this->input->post('fullname'),
+                'phone' => $this->input->post('phone')
             ];
 
             $datalog = [
@@ -255,6 +294,7 @@ class Calculator extends CI_Controller
                 'phone' => $this->input->post('phone'),
                 'last_pajak' => $last_pajak_,
                 'jatuh_tempo' => strtotime($this->input->post('jatuh_tempo')),
+                "jatuh_tempo_stnk" => strtotime($jatuh_tempo_stnk),
                 'up_fee' => $this->input->post('up_fee'),
                 'created_at' => time(),
                 'created_by' => $user_id,

@@ -193,6 +193,7 @@ class Admin extends CI_Controller
             $data = [
                 'admin_skp' => $this->input->post('admin_skp'),
                 'acc_bpkb_leasing' => $this->input->post('acc_bpkb_leasing'),
+                'denda_jatuh_tempo' => $this->input->post('denda_jatuh_tempo'),
                 'denda_jr_motor' => $this->input->post('denda_jr_motor'),
                 'denda_jr_mobil' => $this->input->post('denda_jr_mobil'),
                 'js_motor' => $this->input->post('js_motor'),

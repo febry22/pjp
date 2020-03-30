@@ -22,8 +22,14 @@
     <!-- <img src="<?= base_url('assets/'); ?>img/pdf_logo.jpg" width="30" height="30" class="d-inline-block align-top" alt=""> -->
     <h2>Pratama Jaya Putra</h2>
     <p style="margin-top: -15px;margin-bottom: -15px"><?= $type ?> - <?= $service ?></p>
+    <p style="margin-bottom: -15px"><?php 
+        if($fullname != '' && $phone != '') echo $fullname.' ('.$phone.')';
+        elseif ($fullname != '' && $phone == '') echo $fullname;
+        elseif ($fullname == '' && $phone != '') echo $phone;
+    ?></p>
     <p style="margin-bottom: -15px"><?= $category.' - '.strtoupper($nopol) ?></p>
-    <p>Jatuh Tempo : <?= $jatuh_tempo ?></p>
+    <p style="margin-bottom: -15px">Jatuh Tempo Pajak : <?= $jatuh_tempo ?></p>
+    <p>Jatuh Tempo STNK : <?= $jatuh_tempo_stnk ?></p>
     <hr/>
     <!-- content -->
     <br/>
@@ -129,10 +135,23 @@
     <br/>
     <p style="font-size:8px">*Biaya terlampir diatas hanya sebagai estimasi sementara. Jika ada biaya tambahan, akan dikonfirmasi sebelumnya.</p>
 
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <hr/>
+    <div style="text-align:center">
+      <span style="font-size:9px;">Pratama Jaya Putra | </span>
+      <span style="font-size:9px;text-align:center">Jl. H. Alwi Rt. 04/ 01 No. 26, Kel. Tanjung Barat, Jakarta Selatan, Indonesia | </span>
+      <span style="font-size:9px;text-align:center">Telp. 0813 8174 1192</span>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
   </body>
 </html>
