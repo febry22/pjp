@@ -337,6 +337,42 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group col-lg-6 col-md-6">
+                                    <label for="new_stnk">STNK Baru</label>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <a href="<?php if ($bpkb['new_stnk']) echo base_url('/assets/img/stnk/') . $bpkb['new_stnk'];
+                                                        else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['new_stnk'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="new_stnk" name="new_stnk">
+                                                <label class="custom-file-label" for="image">Choose image</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-lg-6 col-md-6">
+                                    <label for="new_bpkb">Kertas Gesek</label>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <a href="<?php if ($bpkb['new_bpkb']) echo base_url('/assets/img/stnk/') . $bpkb['new_bpkb'];
+                                                        else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                <img src="<?= base_url('/assets/img/stnk/') . $bpkb['new_bpkb'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" class="img-thumbnail">
+                                            </a>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="new_bpkb" name="new_bpkb">
+                                                <label class="custom-file-label" for="image">Choose image</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

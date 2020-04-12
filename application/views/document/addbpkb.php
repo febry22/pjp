@@ -188,6 +188,22 @@
                                         <label class="custom-file-label" for="kertas_gesek">Choose image</label>
                                     </div>
                                 </div>
+                                <div class="form-group col-lg-6 col-md-6">
+                                    <label for="new_stnk">STNK Baru</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="new_stnk" name="new_stnk">
+                                        <label class="custom-file-label" for="new_stnk">Choose image</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-lg-6 col-md-6">
+                                    <label for="new_bpkb">BPKB Baru</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="new_bpkb" name="new_bpkb">
+                                        <label class="custom-file-label" for="new_bpkb">Choose image</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

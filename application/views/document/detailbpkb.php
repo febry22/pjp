@@ -248,6 +248,26 @@
                                                 </a>
                                             </div>
                                         </div>
+                                        <div class="form-group col-lg-6 col-md-6">
+                                            <label for="new_stnk">STNK Baru</label>
+                                            <div>
+                                                <a href="<?php if ($bpkb['new_stnk']) echo base_url('/assets/img/bpkb/') . $bpkb['new_stnk'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/bpkb/') . $bpkb['new_stnk'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-lg-6 col-md-6">
+                                            <label for="new_bpkb">BPKB Baru</label>
+                                            <div>
+                                                <a href="<?php if ($bpkb['new_bpkb']) echo base_url('/assets/img/bpkb/') . $bpkb['new_bpkb'];
+                                                            else echo base_url('/assets/img/image_404.png') ?>" target="_blank">
+                                                    <img src="<?= base_url('/assets/img/bpkb/') . $bpkb['new_bpkb'] ?>" onerror="this.src='<?= base_url('/assets/img/image_404.png') ?>'" width="90%" class="rounded">
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

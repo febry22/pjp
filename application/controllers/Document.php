@@ -191,6 +191,30 @@ class Document extends CI_Controller
                 }
             }
 
+            // Upload New STNK
+            $new_stnk = $_FILES['new_stnk']['name'];
+            if ($new_stnk) {
+                if ($this->upload->do_upload('new_stnk')) {
+                    $this->db->set('new_stnk',  $this->upload->data('file_name'));
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                        . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('document/addstnk');
+                }
+            }
+
+            // Upload New BPKB
+            $new_bpkb = $_FILES['new_bpkb']['name'];
+            if ($new_bpkb) {
+                if ($this->upload->do_upload('new_bpkb')) {
+                    $this->db->set('new_bpkb',  $this->upload->data('file_name'));
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                        . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('document/addstnk');
+                }
+            }
+
             $data = [
                 'service_id' => $this->input->post('service-id-stnk'),
                 'cost_id' => $this->input->post('param-stnk'),
@@ -477,7 +501,7 @@ class Document extends CI_Controller
                 }
             }
 
-            // Upload SK Lising
+            // Upload Kertas Gesek
             $kertas_gesek = $_FILES['kertas_gesek']['name'];
             if ($kertas_gesek) {
                 if ($this->upload->do_upload('kertas_gesek')) {
@@ -489,6 +513,44 @@ class Document extends CI_Controller
 
                     $new_image = $this->upload->data('file_name');
                     $this->db->set('kertas_gesek',  $new_image);
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                        . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('document/editstnk/' . $id);
+                }
+            }
+
+            // Upload New STNK
+            $new_stnk = $_FILES['new_stnk']['name'];
+            if ($new_stnk) {
+                if ($this->upload->do_upload('new_stnk')) {
+                    $old_image = $data['stnk']['new_stnk'];
+
+                    if ($old_image) {
+                        unlink(FCPATH . '/assets/img/stnk/' . $old_image);
+                    }
+
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('new_stnk',  $new_image);
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                        . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('document/editstnk/' . $id);
+                }
+            }
+
+            // Upload New BPBK
+            $new_bpkb = $_FILES['new_bpkb']['name'];
+            if ($new_bpkb) {
+                if ($this->upload->do_upload('new_bpkb')) {
+                    $old_image = $data['stnk']['new_bpkb'];
+
+                    if ($old_image) {
+                        unlink(FCPATH . '/assets/img/stnk/' . $old_image);
+                    }
+
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('new_bpkb',  $new_image);
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
                         . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -720,6 +782,30 @@ class Document extends CI_Controller
             if ($kertas_gesek) {
                 if ($this->upload->do_upload('kertas_gesek')) {
                     $this->db->set('kertas_gesek',  $this->upload->data('file_name'));
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                        . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('document/addbpkb');
+                }
+            }
+
+            // Upload New STNK
+            $new_stnk = $_FILES['new_stnk']['name'];
+            if ($new_stnk) {
+                if ($this->upload->do_upload('new_stnk')) {
+                    $this->db->set('new_stnk',  $this->upload->data('file_name'));
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                        . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                    redirect('document/addbpkb');
+                }
+            }
+
+            // Upload New BPKB
+            $new_bpkb = $_FILES['new_bpkb']['name'];
+            if ($new_bpkb) {
+                if ($this->upload->do_upload('new_bpkb')) {
+                    $this->db->set('new_bpkb',  $this->upload->data('file_name'));
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
                         . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
@@ -1013,7 +1099,7 @@ class Document extends CI_Controller
                 }
             }
 
-            // Upload SK Lising
+            // Upload Kertas Gesek
             $kertas_gesek = $_FILES['kertas_gesek']['name'];
             if ($kertas_gesek) {
                 if ($this->upload->do_upload('kertas_gesek')) {
@@ -1031,6 +1117,44 @@ class Document extends CI_Controller
                     redirect('document/editbpkb/' . $id);
                 }
             }
+
+             // Upload New STNK
+             $new_stnk = $_FILES['new_stnk']['name'];
+             if ($new_stnk) {
+                 if ($this->upload->do_upload('new_stnk')) {
+                     $old_image = $data['stnk']['new_stnk'];
+ 
+                     if ($old_image) {
+                         unlink(FCPATH . '/assets/img/stnk/' . $old_image);
+                     }
+ 
+                     $new_image = $this->upload->data('file_name');
+                     $this->db->set('new_stnk',  $new_image);
+                 } else {
+                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                         . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                     redirect('document/editbpkb/' . $id);
+                 }
+             }
+ 
+             // Upload New BPBK
+             $new_bpkb = $_FILES['new_bpkb']['name'];
+             if ($new_bpkb) {
+                 if ($this->upload->do_upload('new_bpkb')) {
+                     $old_image = $data['stnk']['new_bpkb'];
+ 
+                     if ($old_image) {
+                         unlink(FCPATH . '/assets/img/stnk/' . $old_image);
+                     }
+ 
+                     $new_image = $this->upload->data('file_name');
+                     $this->db->set('new_bpkb',  $new_image);
+                 } else {
+                     $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                         . $this->upload->display_errors() . '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                     redirect('document/editbpkb/' . $id);
+                 }
+             }
 
             if($old_data['status'] != $this->input->post('status')){
                 $log = [
