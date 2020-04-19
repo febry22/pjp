@@ -558,9 +558,12 @@
     });
 </script>
 
-<!-- Cek pajak 5 tahun -->
+<!-- Clear image -->
 <script>
-
+    function clearImg(id) {
+        _id = id.slice(6);
+        document.getElementById(_id).value = "";
+    }
 </script>
 
 </body>

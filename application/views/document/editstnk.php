@@ -154,6 +154,7 @@
                                                 <input type="file" class="custom-file-input" id="ktp_asli" name="ktp_asli">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -171,6 +172,7 @@
                                                 <input type="file" class="custom-file-input" id="ktp_fc" name="ktp_fc">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -190,6 +192,7 @@
                                                 <input type="file" class="custom-file-input" id="stnk_asli" name="stnk_asli">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -207,6 +210,7 @@
                                                 <input type="file" class="custom-file-input" id="stnk_fc" name="stnk_fc">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -226,6 +230,7 @@
                                                 <input type="file" class="custom-file-input" id="bpkb_asli" name="bpkb_asli">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -243,6 +248,7 @@
                                                 <input type="file" class="custom-file-input" id="bpkb_fc" name="bpkb_fc">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -262,6 +268,7 @@
                                                 <input type="file" class="custom-file-input" id="sk_kehilangan" name="sk_kehilangan">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -279,6 +286,7 @@
                                                 <input type="file" class="custom-file-input" id="ktp_baru_fc" name="ktp_baru_fc">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -298,6 +306,7 @@
                                                 <input type="file" class="custom-file-input" id="invoice" name="invoice">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -315,6 +324,7 @@
                                                 <input type="file" class="custom-file-input" id="sk_lising" name="sk_lising">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -334,6 +344,7 @@
                                                 <input type="file" class="custom-file-input" id="kertas_gesek" name="kertas_gesek">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -351,6 +362,7 @@
                                                 <input type="file" class="custom-file-input" id="new_stnk" name="new_stnk">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>
@@ -370,6 +382,7 @@
                                                 <input type="file" class="custom-file-input" id="new_bpkb" name="new_bpkb">
                                                 <label class="custom-file-label" for="image">Choose image</label>
                                             </div>
+                                            <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                         </div>
                                     </div>
                                 </div>

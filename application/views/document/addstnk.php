@@ -104,9 +104,11 @@
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="ktp_asli">KTP Asli</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="ktp_asli" name="ktp_asli">
-                                        <label class="custom-file-label" for="ktp_asli">Choose image</label>
+                                        <label id="label_ktp_asli" style="margin-right:10px">No File Chosen</label>
+                                        <input type="file" id="ktp_asli" name="ktp_asli" style="display:none">
+                                        <label for="ktp_asli" class="btn btn-info btn-sm">Choose file</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="ktp_fc">KTP Fotocopy</label>
@@ -114,6 +116,7 @@
                                         <input type="file" class="custom-file-input" id="ktp_fc" name="ktp_fc">
                                         <label class="custom-file-label" for="ktp_fc">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -123,6 +126,7 @@
                                         <input type="file" class="custom-file-input" id="stnk_asli" name="stnk_asli">
                                         <label class="custom-file-label" for="stnk_asli">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="stnk_fc">STNK Fotocopy</label>
@@ -130,6 +134,7 @@
                                         <input type="file" class="custom-file-input" id="stnk_fc" name="stnk_fc">
                                         <label class="custom-file-label" for="stnk_fc">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -139,6 +144,7 @@
                                         <input type="file" class="custom-file-input" id="bpkb_asli" name="bpkb_asli">
                                         <label class="custom-file-label" for="bpkb_asli">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="bpkb_fc">BPKB Fotocopy</label>
@@ -146,6 +152,7 @@
                                         <input type="file" class="custom-file-input" id="bpkb_fc" name="bpkb_fc">
                                         <label class="custom-file-label" for="bpkb_fc">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -155,6 +162,7 @@
                                         <input type="file" class="custom-file-input" id="sk_kehilangan" name="sk_kehilangan">
                                         <label class="custom-file-label" for="sk_kehilangan">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="ktp_baru_fc">KTP Baru Fotocopy</label>
@@ -162,6 +170,7 @@
                                         <input type="file" class="custom-file-input" id="ktp_baru_fc" name="ktp_baru_fc">
                                         <label class="custom-file-label" for="ktp_baru_fc">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -171,6 +180,7 @@
                                         <input type="file" class="custom-file-input" id="invoice" name="invoice">
                                         <label class="custom-file-label" for="invoice">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="sk_lising">SK Lising</label>
@@ -178,6 +188,7 @@
                                         <input type="file" class="custom-file-input" id="sk_lising" name="sk_lising">
                                         <label class="custom-file-label" for="sk_lising">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -187,6 +198,7 @@
                                         <input type="file" class="custom-file-input" id="kertas_gesek" name="kertas_gesek">
                                         <label class="custom-file-label" for="kertas_gesek">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                                 <div class="form-group col-lg-6 col-md-6">
                                     <label for="new_stnk">STNK Baru</label>
@@ -194,6 +206,7 @@
                                         <input type="file" class="custom-file-input" id="new_stnk" name="new_stnk">
                                         <label class="custom-file-label" for="new_stnk">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -203,6 +216,7 @@
                                         <input type="file" class="custom-file-input" id="new_bpkb" name="new_bpkb">
                                         <label class="custom-file-label" for="new_bpkb">Choose image</label>
                                     </div>
+                                    <button style="margin-top: 10px" type="button" class="btn btn-danger btn-sm" id="clear_ktp_asli" onclick="clearImg(this.id)">Clear</button>
                                 </div>
                             </div>
                         </div>
